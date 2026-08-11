@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1760" height="360" viewBox="0 0 1760 360">
+<rect width="100%" height="100%" fill="#fafafa"/>
+<text x="30" y="45" font-family="Arial" font-size="24" font-weight="700">RAG retrieves first and answers second</text>
+<rect x="40" y="145" width="180" height="90" rx="14" fill="#f2f2f2" stroke="#333" stroke-width="2"/>
+<text x="58" y="177" font-family="Arial" font-size="16">Public</text>
+<text x="58" y="199" font-family="Arial" font-size="16">documents</text>
+<line x1="220" y1="190" x2="255" y2="190" stroke="#333" stroke-width="3"/>
+<polygon points="255,190 242,182 242,198" fill="#333"/>
+<rect x="260" y="145" width="180" height="90" rx="14" fill="#f2f2f2" stroke="#333" stroke-width="2"/>
+<text x="278" y="177" font-family="Arial" font-size="16">Chunks</text>
+<line x1="440" y1="190" x2="475" y2="190" stroke="#333" stroke-width="3"/>
+<polygon points="475,190 462,182 462,198" fill="#333"/>
+<rect x="480" y="145" width="180" height="90" rx="14" fill="#f2f2f2" stroke="#333" stroke-width="2"/>
+<text x="498" y="177" font-family="Arial" font-size="16">Embeddings</text>
+<line x1="660" y1="190" x2="695" y2="190" stroke="#333" stroke-width="3"/>
+<polygon points="695,190 682,182 682,198" fill="#333"/>
+<rect x="700" y="145" width="180" height="90" rx="14" fill="#f2f2f2" stroke="#333" stroke-width="2"/>
+<text x="718" y="177" font-family="Arial" font-size="16">Vector store</text>
+<line x1="880" y1="190" x2="915" y2="190" stroke="#333" stroke-width="3"/>
+<polygon points="915,190 902,182 902,198" fill="#333"/>
+<rect x="920" y="145" width="180" height="90" rx="14" fill="#f2f2f2" stroke="#333" stroke-width="2"/>
+<text x="938" y="177" font-family="Arial" font-size="16">Retriever</text>
+<line x1="1100" y1="190" x2="1135" y2="190" stroke="#333" stroke-width="3"/>
+<polygon points="1135,190 1122,182 1122,198" fill="#333"/>
+<rect x="1140" y="145" width="180" height="90" rx="14" fill="#f2f2f2" stroke="#333" stroke-width="2"/>
+<text x="1158" y="177" font-family="Arial" font-size="16">Prompt + model</text>
+<line x1="1320" y1="190" x2="1355" y2="190" stroke="#333" stroke-width="3"/>
+<polygon points="1355,190 1342,182 1342,198" fill="#333"/>
+<rect x="1360" y="145" width="180" height="90" rx="14" fill="#f2f2f2" stroke="#333" stroke-width="2"/>
+<text x="1378" y="177" font-family="Arial" font-size="16">Grounded answer</text>
+<text x="30" y="320" font-family="Arial" font-size="16" fill="#555">Always inspect retrieved context before trusting the final answer.</text>
+</svg>

@@ -1,0 +1,9 @@
+flowchart LR
+    A[Public documents] --> B[Text splitter]
+    B --> C[Embeddings]
+    C --> D[Vector store]
+    E[User query] --> F[Retriever]
+    D --> F
+    F --> G[Retrieved context]
+    G --> H[Prompt + chat model]
+    H --> I[Grounded answer]

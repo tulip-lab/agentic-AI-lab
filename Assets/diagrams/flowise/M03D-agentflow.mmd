@@ -1,0 +1,7 @@
+flowchart LR
+    A[User request] --> B[Agent instruction]
+    B --> C{Need tool?}
+    C -->|No| D[Direct answer]
+    C -->|Yes| E[Approved tool]
+    E --> F[Validated result]
+    F --> G[Final answer]
