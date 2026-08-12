@@ -1,6 +1,6 @@
-[![GitHub issues](https://img.shields.io/github/issues/tulip-lab/agentic-ai)](https://github.com/tulip-lab/agentic-ai/issues)
-[![GitHub pull requests](https://img.shields.io/github/issues-pr/tulip-lab/agentic-ai)](https://github.com/tulip-lab/agentic-ai/pulls)
-[![GitHub stars](https://img.shields.io/github/stars/tulip-lab/agentic-ai.svg?style=social&label=Star)](https://github.com/tulip-lab/agentic-ai/stargazers/)
+[![GitHub issues](https://img.shields.io/github/issues/tulip-lab/agentic-AI-lab)](https://github.com/tulip-lab/agentic-AI-lab/issues)
+[![GitHub pull requests](https://img.shields.io/github/issues-pr/tulip-lab/agentic-AI-lab)](https://github.com/tulip-lab/agentic-AI-lab/pulls)
+[![GitHub stars](https://img.shields.io/github/stars/tulip-lab/agentic-AI-lab.svg?style=social&label=Star)](https://github.com/tulip-lab/agentic-AI-lab/stargazers/)
 
 ---
 
@@ -17,7 +17,7 @@ This repository contains student-facing practical materials for building generat
 - Materials in this repository support practical learning in generative AI and agentic AI systems.
 - Public course documents and public datasets should be used wherever possible in exercises.
 - Public data for simple practical tasks should preferably come from [tulip-lab/open-data](https://github.com/tulip-lab/open-data).
-- If you find an issue or bug, please submit an issue at [tulip-lab/agentic-ai](https://github.com/tulip-lab/agentic-ai/issues).
+- If you find an issue or bug, please submit an issue in [this repository](https://github.com/tulip-lab/agentic-AI-lab/issues).
 - Pull requests that improve clarity, reproducibility or safety are welcome.
 - Point of contact: [Prof. Gang Li](https://github.com/tuliplab)
 
@@ -44,7 +44,7 @@ When a lab requires documents or data, use the following source order:
 3. Small synthetic examples created inside the notebook or tutorial.
 4. External public data only when the lab objective cannot be achieved with the first three options.
 
-More details are available in [Docs/DATA_POLICY.md](Docs/DATA_POLICY.md).
+More details are available in the [Data policy](Data/README.md).
 
 ---
 
@@ -62,14 +62,14 @@ More details are available in [Docs/DATA_POLICY.md](Docs/DATA_POLICY.md).
 
 | Module | Category | Topic | Module Materials |
 | :----: | :---: | ------- | :----- |
-| :one: | Preliminary | Foundations | <ul><li>[M01A-Python-Colab-API-Safety](Jupyter/M01-Foundations/M01A-Python-Colab-API-Safety.ipynb)</li><li>[M01B-GenAI-Fundamentals](Jupyter/M01-Foundations/M01B-GenAI-Fundamentals.ipynb)</li><li>[M01C-LLMs-FunctionCalling-APIs](Jupyter/M01-Foundations/M01C-LLMs-FunctionCalling-APIs.ipynb)</li></ul> |
-| :two: | Preliminary | AI Modelling Basics | <ul><li>[M02A-Regression-ML-Basics](Jupyter/M02-AIModeling/M02A-Regression-ML-Basics.ipynb)</li><li>[M02B-DeepLearning-ImageClassification](Jupyter/M02-AIModeling/M02B-DeepLearning-ImageClassification.ipynb)</li><li>[M02C-Embeddings-VectorData-Similarity](Jupyter/M02-AIModeling/M02C-Embeddings-VectorData-Similarity.ipynb)</li></ul> |
-| :three: | Core | Visual Workflows with Flowise | <ul><li>[M03A-Flowise-Setup-Interface](Flowise/M03-VisualWorkflows/M03A-Flowise-Setup-Interface.md)</li><li>[M03B-Flowise-Chatbot](Flowise/M03-VisualWorkflows/M03B-Flowise-Chatbot.md)</li><li>[M03C-Flowise-RAG-CourseDocs](Flowise/M03-VisualWorkflows/M03C-Flowise-RAG-CourseDocs.md)</li><li>[M03D-Flowise-AgentFlow-Tools](Flowise/M03-VisualWorkflows/M03D-Flowise-AgentFlow-Tools.md)</li><li>[M03E-Flowise-Hosting-WebIntegration](Flowise/M03-VisualWorkflows/M03E-Flowise-Hosting-WebIntegration.md)</li></ul> |
-| :four: | Core | LangChain Programming | <ul><li>[M04A-LangChain-Fundamentals](Jupyter/M04-LangChain/M04A-LangChain-Fundamentals.ipynb)</li><li>[M04B-LangChain-ToolAgents](Jupyter/M04-LangChain/M04B-LangChain-ToolAgents.ipynb)</li><li>[M04C-CustomTools-Storage-Actions](Jupyter/M04-LangChain/M04C-CustomTools-Storage-Actions.ipynb)</li><li>[M04D-LeadResearch-WritingAgent](Jupyter/M04-LangChain/M04D-LeadResearch-WritingAgent.ipynb)</li></ul> |
-| :five: | Core | Knowledge Agents and Stateful Workflows | <ul><li>[M05A-Basic-RAG-System](Jupyter/M05-KnowledgeState/M05A-Basic-RAG-System.ipynb)</li><li>[M05B-RAG-CourseMaterials-Assistant](Jupyter/M05-KnowledgeState/M05B-RAG-CourseMaterials-Assistant.ipynb)</li><li>[M05C-LangGraph-StatefulWorkflows](Jupyter/M05-KnowledgeState/M05C-LangGraph-StatefulWorkflows.ipynb)</li><li>[M05D-Copilot-Vision-TaskExecution](Jupyter/M05-KnowledgeState/M05D-Copilot-Vision-TaskExecution.ipynb)</li></ul> |
-| :six: | Core | Multi-Agent Systems and Safety | <ul><li>[M06A-MultiAgent-Collaboration](Jupyter/M06-MultiAgentSafety/M06A-MultiAgent-Collaboration.ipynb)</li><li>[M06B-LLM-Malicious-Instruction-Defense](Jupyter/M06-MultiAgentSafety/M06B-LLM-Malicious-Instruction-Defense.ipynb)</li><li>[M06C-PrivateAgents-Ollama](Jupyter/M06-MultiAgentSafety/M06C-PrivateAgents-Ollama.ipynb)</li><li>[M06D-AgentSecurity-LegalRisks](Jupyter/M06-MultiAgentSafety/M06D-AgentSecurity-LegalRisks.ipynb)</li></ul> |
-| :seven: | Advanced | Model Adaptation and Multimodal GenAI | <ul><li>[M07A-Finetuning-LLM](Jupyter/M07-ModelAdaptation/M07A-Finetuning-LLM.ipynb)</li><li>[M07B-Finetuning-Forgetting](Jupyter/M07-ModelAdaptation/M07B-Finetuning-Forgetting.ipynb)</li><li>[M07C-Diffusion-Customization](Jupyter/M07-ModelAdaptation/M07C-Diffusion-Customization.ipynb)</li><li>[M07D-Speech-Generation](Jupyter/M07-ModelAdaptation/M07D-Speech-Generation.ipynb)</li><li>[M07E-FastInference-ProviderComparison](Jupyter/M07-ModelAdaptation/M07E-FastInference-ProviderComparison.ipynb)</li></ul> |
-| :eight: | Advanced | Advanced Agentic AI | <ul><li>[M08A-HuggingFace-Evaluation](Jupyter/M08-Advanced/M08A-HuggingFace-Evaluation.ipynb)</li><li>[M08B-Codex-Codebase-Understanding-and-Development](Codex/M08-Advanced/M08B-Codex-Codebase-Understanding-and-Development.md)</li><li>[M08C-Productised-AIAgents-GoToMarket](Codex/M08-Advanced/M08C-Productised-AIAgents-GoToMarket.md)</li></ul> |
+| :one: | Preliminary | Foundations | <ul><li>[M01A-Python-Colab-API-Safety](M01-Introduction/Jupyter/M01A-Python-Colab-API-Safety.ipynb)</li><li>[M01B-GenAI-Fundamentals](M01-Introduction/Jupyter/M01B-GenAI-Fundamentals.ipynb)</li><li>[M01C-LLMs-FunctionCalling-APIs](M01-Introduction/Jupyter/M01C-LLMs-FunctionCalling-APIs.ipynb)</li></ul> |
+| :two: | Preliminary | AI Modelling Basics | <ul><li>[M02A-Regression-ML-Basics](M02-AI-Modeling/Jupyter/M02A-Regression-ML-Basics.ipynb)</li><li>[M02B-DeepLearning-ImageClassification](M02-AI-Modeling/Jupyter/M02B-DeepLearning-ImageClassification.ipynb)</li><li>[M02C-Embeddings-VectorData-Similarity](M02-AI-Modeling/Jupyter/M02C-Embeddings-VectorData-Similarity.ipynb)</li></ul> |
+| :three: | Core | Visual Workflows with Flowise | <ul><li>[M03X-Flowise-Environment-Setup](M03-Visual-Agent-Workflows/Flowise/M03X-Flowise-Environment-Setup.md)</li><li>[M03A-Flowise-Interface-First-Chatflow](M03-Visual-Agent-Workflows/Flowise/M03A-Flowise-Interface-First-Chatflow.md)</li><li>[M03B-Flowise-Chatbot-Prompt-Memory](M03-Visual-Agent-Workflows/Flowise/M03B-Flowise-Chatbot-Prompt-Memory.md)</li><li>[M03C-Flowise-RAG-Public-Unit-Docs](M03-Visual-Agent-Workflows/Flowise/M03C-Flowise-RAG-Public-Unit-Docs.md)</li><li>[M03D-Flowise-AgentFlow-Safe-Tools](M03-Visual-Agent-Workflows/Flowise/M03D-Flowise-AgentFlow-Safe-Tools.md)</li><li>[M03E-Flowise-Embed-API-Deployment-Readiness](M03-Visual-Agent-Workflows/Flowise/M03E-Flowise-Embed-API-Deployment-Readiness.md)</li></ul> |
+| :four: | Core | LangChain Programming | <ul><li>[M04A-LangChain-Fundamentals](M04-Agent-Programming/Jupyter/M04A-LangChain-Fundamentals.ipynb)</li><li>[M04B-LangChain-ToolAgents](M04-Agent-Programming/Jupyter/M04B-LangChain-ToolAgents.ipynb)</li><li>[M04C-CustomTools-Storage-Actions](M04-Agent-Programming/Jupyter/M04C-CustomTools-Storage-Actions.ipynb)</li><li>[M04D-LeadResearch-WritingAgent](M04-Agent-Programming/Jupyter/M04D-LeadResearch-WritingAgent.ipynb)</li></ul> |
+| :five: | Core | Knowledge Agents and Stateful Workflows | <ul><li>[M05A-Basic-RAG-System](M05-Knowledge-and-State/Jupyter/M05A-Basic-RAG-System.ipynb)</li><li>[M05B-RAG-CourseMaterials-Assistant](M05-Knowledge-and-State/Jupyter/M05B-RAG-CourseMaterials-Assistant.ipynb)</li><li>[M05C-LangGraph-StatefulWorkflows](M05-Knowledge-and-State/Jupyter/M05C-LangGraph-StatefulWorkflows.ipynb)</li><li>[M05D-Copilot-Vision-TaskExecution](M05-Knowledge-and-State/Jupyter/M05D-Copilot-Vision-TaskExecution.ipynb)</li></ul> |
+| :six: | Core | Multi-Agent Systems and Safety | <ul><li>[M06A-MultiAgent-Collaboration](M06-Multi-Agent-Systems-and-Safety/Jupyter/M06A-MultiAgent-Collaboration.ipynb)</li><li>[M06B-LLM-Malicious-Instruction-Defense](M06-Multi-Agent-Systems-and-Safety/Jupyter/M06B-LLM-Malicious-Instruction-Defense.ipynb)</li><li>[M06C-PrivateAgents-Ollama](M06-Multi-Agent-Systems-and-Safety/Jupyter/M06C-PrivateAgents-Ollama.ipynb)</li><li>[M06D-AgentSecurity-LegalRisks](M06-Multi-Agent-Systems-and-Safety/Jupyter/M06D-AgentSecurity-LegalRisks.ipynb)</li></ul> |
+| :seven: | Advanced | Model Adaptation and Multimodal GenAI | <ul><li>[M07A-Finetuning-LLM](M07-Model-Adaptation-and-Multimodal-AI/Jupyter/M07A-Finetuning-LLM.ipynb)</li><li>[M07B-Finetuning-Forgetting](M07-Model-Adaptation-and-Multimodal-AI/Jupyter/M07B-Finetuning-Forgetting.ipynb)</li><li>[M07C-Diffusion-Customization](M07-Model-Adaptation-and-Multimodal-AI/Jupyter/M07C-Diffusion-Customization.ipynb)</li><li>[M07D-Speech-Generation](M07-Model-Adaptation-and-Multimodal-AI/Jupyter/M07D-Speech-Generation.ipynb)</li><li>[M07E-FastInference-ProviderComparison](M07-Model-Adaptation-and-Multimodal-AI/Jupyter/M07E-FastInference-ProviderComparison.ipynb)</li></ul> |
+| :eight: | Advanced | Advanced Agentic AI | <ul><li>[M08A-HuggingFace-Evaluation](M08-Advanced-Agentic-AI/Jupyter/M08A-HuggingFace-Evaluation.ipynb)</li><li>[M08B-Codex-Codebase-Understanding-and-Development](M08-Advanced-Agentic-AI/Codex/M08B-Codex-Codebase-Understanding-and-Development.md)</li><li>[M08C-Productised-AIAgents-GoToMarket](M08-Advanced-Agentic-AI/Codex/M08C-Productised-AIAgents-GoToMarket.md)</li><li>[M08D-MCP-Fundamentals-ToolContextServers](M08-Advanced-Agentic-AI/Jupyter/M08D-MCP-Fundamentals-ToolContextServers.ipynb)</li><li>[M08E-Agent-Hooks-WorkflowGuards](M08-Advanced-Agentic-AI/Jupyter/M08E-Agent-Hooks-WorkflowGuards.ipynb)</li></ul> |
 
 ---
 
@@ -103,12 +103,18 @@ Screencasts and supplementary demonstrations may be published through [TULIP Lab
 
 ---
 
+## Licensing
+
+Teaching content and code use separate licences. See [LICENSING.md](LICENSING.md) for the exact scope, attribution requirements, and exclusions.
+
+---
+
 ## Contributors
 
 Thanks goes to these wonderful people :tulip:
 
-<a href="https://github.com/tulip-lab/agentic-ai/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=tulip-lab/agentic-ai" />
+<a href="https://github.com/tulip-lab/agentic-AI-lab/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=tulip-lab/agentic-AI-lab" />
 </a>
 
 Made with [contributors-img](https://contrib.rocks).
