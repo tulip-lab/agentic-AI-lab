@@ -57,40 +57,40 @@ Do not use private files, student submissions, instructor-only notes, reference 
 
 | Module | Session | Session Title | Public File |
 | ------- | :---: | ------- | ------- |
-| M01: Foundations | M01A | Python, Colab and API Safety | `M01-Introduction/Jupyter/M01A-Python-Colab-API-Safety.ipynb` |
-|  | M01B | GenAI and Agentic AI Fundamentals | `M01-Introduction/Jupyter/M01B-GenAI-Fundamentals.ipynb` |
-|  | M01C | LLMs, Function Calling, APIs and Agent Ecosystems | `M01-Introduction/Jupyter/M01C-LLMs-FunctionCalling-APIs.ipynb` |
+| M01: Foundations | M01A | Python, Colab and API Safety | `M01-Foundations/Jupyter/M01A-Python-Colab-API-Safety.ipynb` |
+|  | M01B | GenAI and Agentic AI Fundamentals | `M01-Foundations/Jupyter/M01B-GenAI-Fundamentals.ipynb` |
+|  | M01C | LLMs, Function Calling, APIs and Agent Ecosystems | `M01-Foundations/Jupyter/M01C-LLMs-FunctionCalling-APIs.ipynb` |
 | M02: AI Modelling Basics | M02A | Regression and ML Basics | `M02-AI-Modeling/Jupyter/M02A-Regression-ML-Basics.ipynb` |
 |  | M02B | Deep Learning Image Classification | `M02-AI-Modeling/Jupyter/M02B-DeepLearning-ImageClassification.ipynb` |
 |  | M02C | Embeddings, Vector Data and Similarity Search | `M02-AI-Modeling/Jupyter/M02C-Embeddings-VectorData-Similarity.ipynb` |
-| M03: Visual Workflows with Flowise | M03X | Flowise Environment Setup | `M03-Visual-Agent-Workflows/Flowise/M03X-Flowise-Environment-Setup.md` |
-|  | M03A | Interface and First Chatflow | `M03-Visual-Agent-Workflows/Flowise/M03A-Flowise-Interface-First-Chatflow.md` |
-|  | M03B | Chatbot Prompting and Memory | `M03-Visual-Agent-Workflows/Flowise/M03B-Flowise-Chatbot-Prompt-Memory.md` |
-|  | M03C | RAG over Public Unit Documents | `M03-Visual-Agent-Workflows/Flowise/M03C-Flowise-RAG-Public-Unit-Docs.md` |
-|  | M03D | AgentFlow with Safe Tools | `M03-Visual-Agent-Workflows/Flowise/M03D-Flowise-AgentFlow-Safe-Tools.md` |
-|  | M03E | Embedding, API and Deployment Readiness | `M03-Visual-Agent-Workflows/Flowise/M03E-Flowise-Embed-API-Deployment-Readiness.md` |
+| M03: Visual Workflows with Flowise | M03X | Flowise Environment Setup | `M03-Visual-Agents/Flowise/M03X-Flowise-Environment-Setup.md` |
+|  | M03A | Interface and First Chatflow | `M03-Visual-Agents/Flowise/M03A-Flowise-Interface-First-Chatflow.md` |
+|  | M03B | Chatbot Prompting and Memory | `M03-Visual-Agents/Flowise/M03B-Flowise-Chatbot-Prompt-Memory.md` |
+|  | M03C | RAG over Public Unit Documents | `M03-Visual-Agents/Flowise/M03C-Flowise-RAG-Public-Unit-Docs.md` |
+|  | M03D | AgentFlow with Safe Tools | `M03-Visual-Agents/Flowise/M03D-Flowise-AgentFlow-Safe-Tools.md` |
+|  | M03E | Embedding, API and Deployment Readiness | `M03-Visual-Agents/Flowise/M03E-Flowise-Embed-API-Deployment-Readiness.md` |
 | M04: LangChain Programming | M04A | LangChain Fundamentals | `M04-Agent-Programming/Jupyter/M04A-LangChain-Fundamentals.ipynb` |
 |  | M04B | LangChain Tool-Using Agents | `M04-Agent-Programming/Jupyter/M04B-LangChain-ToolAgents.ipynb` |
 |  | M04C | Custom Tools, Local Storage and Action Execution | `M04-Agent-Programming/Jupyter/M04C-CustomTools-Storage-Actions.ipynb` |
 |  | M04D | Lead Research and Personalised Writing Agent | `M04-Agent-Programming/Jupyter/M04D-LeadResearch-WritingAgent.ipynb` |
-| M05: Knowledge Agents and Stateful Workflows | M05A | Basic RAG System | `M05-Knowledge-and-State/Jupyter/M05A-Basic-RAG-System.ipynb` |
-|  | M05B | RAG Domain Assistant using Course Materials | `M05-Knowledge-and-State/Jupyter/M05B-RAG-CourseMaterials-Assistant.ipynb` |
-|  | M05C | LangGraph Stateful Workflows | `M05-Knowledge-and-State/Jupyter/M05C-LangGraph-StatefulWorkflows.ipynb` |
-|  | M05D | Copilot-Style Assistant with Vision and Task Execution | `M05-Knowledge-and-State/Jupyter/M05D-Copilot-Vision-TaskExecution.ipynb` |
-| M06: Multi-Agent Systems and Safety | M06A | Multi-Agent Collaboration | `M06-Multi-Agent-Systems-and-Safety/Jupyter/M06A-MultiAgent-Collaboration.ipynb` |
-|  | M06B | LLM Malicious Instruction and Prompt Injection Defence | `M06-Multi-Agent-Systems-and-Safety/Jupyter/M06B-LLM-Malicious-Instruction-Defense.ipynb` |
-|  | M06C | Private Agents with Open-Source LLMs and Ollama | `M06-Multi-Agent-Systems-and-Safety/Jupyter/M06C-PrivateAgents-Ollama.ipynb` |
-|  | M06D | Agent Security, Data Poisoning and Legal Risks | `M06-Multi-Agent-Systems-and-Safety/Jupyter/M06D-AgentSecurity-LegalRisks.ipynb` |
-| M07: Model Adaptation and Multimodal GenAI | M07A | Fine-Tuning LLMs | `M07-Model-Adaptation-and-Multimodal-AI/Jupyter/M07A-Finetuning-LLM.ipynb` |
-|  | M07B | Fine-Tuning and Forgetting | `M07-Model-Adaptation-and-Multimodal-AI/Jupyter/M07B-Finetuning-Forgetting.ipynb` |
-|  | M07C | Diffusion Customization | `M07-Model-Adaptation-and-Multimodal-AI/Jupyter/M07C-Diffusion-Customization.ipynb` |
-|  | M07D | Speech Generation | `M07-Model-Adaptation-and-Multimodal-AI/Jupyter/M07D-Speech-Generation.ipynb` |
-|  | M07E | Fast Inference and Model Provider Comparison | `M07-Model-Adaptation-and-Multimodal-AI/Jupyter/M07E-FastInference-ProviderComparison.ipynb` |
-| M08: Advanced Agentic AI | M08A | Hugging Face Evaluation | `M08-Advanced-Agentic-AI/Jupyter/M08A-HuggingFace-Evaluation.ipynb` |
-|  | M08B | Codex Codebase Understanding and Development | `M08-Advanced-Agentic-AI/Codex/M08B-Codex-Codebase-Understanding-and-Development.md` |
-|  | M08C | Productised AI Agents and Go-to-Market Checklist | `M08-Advanced-Agentic-AI/Codex/M08C-Productised-AIAgents-GoToMarket.md` |
-|  | M08D | MCP Fundamentals and Tool Context Servers | `M08-Advanced-Agentic-AI/Jupyter/M08D-MCP-Fundamentals-ToolContextServers.ipynb` |
-|  | M08E | Agent Hooks and Workflow Guards | `M08-Advanced-Agentic-AI/Jupyter/M08E-Agent-Hooks-WorkflowGuards.ipynb` |
+| M05: Knowledge Agents and Stateful Workflows | M05A | Basic RAG System | `M05-Knowledge-Agents/Jupyter/M05A-Basic-RAG-System.ipynb` |
+|  | M05B | RAG Domain Assistant using Course Materials | `M05-Knowledge-Agents/Jupyter/M05B-RAG-CourseMaterials-Assistant.ipynb` |
+|  | M05C | LangGraph Stateful Workflows | `M05-Knowledge-Agents/Jupyter/M05C-LangGraph-StatefulWorkflows.ipynb` |
+|  | M05D | Copilot-Style Assistant with Vision and Task Execution | `M05-Knowledge-Agents/Jupyter/M05D-Copilot-Vision-TaskExecution.ipynb` |
+| M06: Multi-Agent Systems and Safety | M06A | Multi-Agent Collaboration | `M06-Multi-Agent-Safety/Jupyter/M06A-MultiAgent-Collaboration.ipynb` |
+|  | M06B | LLM Malicious Instruction and Prompt Injection Defence | `M06-Multi-Agent-Safety/Jupyter/M06B-LLM-Malicious-Instruction-Defense.ipynb` |
+|  | M06C | Private Agents with Open-Source LLMs and Ollama | `M06-Multi-Agent-Safety/Jupyter/M06C-PrivateAgents-Ollama.ipynb` |
+|  | M06D | Agent Security, Data Poisoning and Legal Risks | `M06-Multi-Agent-Safety/Jupyter/M06D-AgentSecurity-LegalRisks.ipynb` |
+| M07: Model Adaptation and Multimodal GenAI | M07A | Fine-Tuning LLMs | `M07-Model-Adaptation/Jupyter/M07A-Finetuning-LLM.ipynb` |
+|  | M07B | Fine-Tuning and Forgetting | `M07-Model-Adaptation/Jupyter/M07B-Finetuning-Forgetting.ipynb` |
+|  | M07C | Diffusion Customization | `M07-Model-Adaptation/Jupyter/M07C-Diffusion-Customization.ipynb` |
+|  | M07D | Speech Generation | `M07-Model-Adaptation/Jupyter/M07D-Speech-Generation.ipynb` |
+|  | M07E | Fast Inference and Model Provider Comparison | `M07-Model-Adaptation/Jupyter/M07E-FastInference-ProviderComparison.ipynb` |
+| M08: Advanced Agentic AI | M08A | Hugging Face Evaluation | `M08-Agent-Engineering/Jupyter/M08A-HuggingFace-Evaluation.ipynb` |
+|  | M08B | Codex Codebase Understanding and Development | `M08-Agent-Engineering/Codex/M08B-Codex-Codebase-Understanding-and-Development.md` |
+|  | M08C | Productised AI Agents and Go-to-Market Checklist | `M08-Agent-Engineering/Codex/M08C-Productised-AIAgents-GoToMarket.md` |
+|  | M08D | MCP Fundamentals and Tool Context Servers | `M08-Agent-Engineering/Jupyter/M08D-MCP-Fundamentals-ToolContextServers.ipynb` |
+|  | M08E | Agent Hooks and Workflow Guards | `M08-Agent-Engineering/Jupyter/M08E-Agent-Hooks-WorkflowGuards.ipynb` |
 
 ## Theme Mapping
 
