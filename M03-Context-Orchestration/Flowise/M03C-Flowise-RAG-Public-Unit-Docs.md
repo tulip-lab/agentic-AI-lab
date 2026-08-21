@@ -1,7 +1,7 @@
 ![FLIP Banner](../../Assets/images/flip-banner.png)
 
 # FLIP: Agentic AI in Practice
-**(Module 03: Visual Workflows with Flowise)**
+**(Module 03: Context Engineering and Agent Orchestration)**
 
 ---
 

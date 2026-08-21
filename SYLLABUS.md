@@ -46,7 +46,7 @@ Do not use private files, student submissions, instructor-only notes, reference 
 | :----: | :---: | ------- |
 | M01 | Preliminary | Foundations |
 | M02 | Preliminary | AI Modelling Basics |
-| M03 | Core | Visual Workflows with Flowise |
+| M03 | Core | Context Engineering and Agent Orchestration |
 | M04 | Core | LangChain Programming |
 | M05 | Core | Knowledge Agents and Stateful Workflows |
 | M06 | Core | Multi-Agent Systems and Safety |
@@ -63,12 +63,12 @@ Do not use private files, student submissions, instructor-only notes, reference 
 | M02: AI Modelling Basics | M02A | Regression and ML Basics | `M02-AI-Modeling/Jupyter/M02A-Regression-ML-Basics.ipynb` |
 |  | M02B | Deep Learning Image Classification | `M02-AI-Modeling/Jupyter/M02B-DeepLearning-ImageClassification.ipynb` |
 |  | M02C | Embeddings, Vector Data and Similarity Search | `M02-AI-Modeling/Jupyter/M02C-Embeddings-VectorData-Similarity.ipynb` |
-| M03: Visual Workflows with Flowise | M03X | Flowise Environment Setup | `M03-Visual-Agents/Flowise/M03X-Flowise-Environment-Setup.md` |
-|  | M03A | Interface and First Chatflow | `M03-Visual-Agents/Flowise/M03A-Flowise-Interface-First-Chatflow.md` |
-|  | M03B | Chatbot Prompting and Memory | `M03-Visual-Agents/Flowise/M03B-Flowise-Chatbot-Prompt-Memory.md` |
-|  | M03C | RAG over Public Unit Documents | `M03-Visual-Agents/Flowise/M03C-Flowise-RAG-Public-Unit-Docs.md` |
-|  | M03D | AgentFlow with Safe Tools | `M03-Visual-Agents/Flowise/M03D-Flowise-AgentFlow-Safe-Tools.md` |
-|  | M03E | Embedding, API and Deployment Readiness | `M03-Visual-Agents/Flowise/M03E-Flowise-Embed-API-Deployment-Readiness.md` |
+| M03: Context Engineering and Agent Orchestration | M03X | Flowise Environment Setup | `M03-Context-Orchestration/Flowise/M03X-Flowise-Environment-Setup.md` |
+|  | M03A | Interface and First Chatflow | `M03-Context-Orchestration/Flowise/M03A-Flowise-Interface-First-Chatflow.md` |
+|  | M03B | Chatbot Prompting and Memory | `M03-Context-Orchestration/Flowise/M03B-Flowise-Chatbot-Prompt-Memory.md` |
+|  | M03C | RAG over Public Unit Documents | `M03-Context-Orchestration/Flowise/M03C-Flowise-RAG-Public-Unit-Docs.md` |
+|  | M03D | AgentFlow with Safe Tools | `M03-Context-Orchestration/Flowise/M03D-Flowise-AgentFlow-Safe-Tools.md` |
+|  | M03E | Embedding, API and Deployment Readiness | `M03-Context-Orchestration/Flowise/M03E-Flowise-Embed-API-Deployment-Readiness.md` |
 | M04: LangChain Programming | M04A | LangChain Fundamentals | `M04-Agent-Programming/Jupyter/M04A-LangChain-Fundamentals.ipynb` |
 |  | M04B | LangChain Tool-Using Agents | `M04-Agent-Programming/Jupyter/M04B-LangChain-ToolAgents.ipynb` |
 |  | M04C | Custom Tools, Local Storage and Action Execution | `M04-Agent-Programming/Jupyter/M04C-CustomTools-Storage-Actions.ipynb` |
