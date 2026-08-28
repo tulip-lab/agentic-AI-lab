@@ -45,7 +45,7 @@ Do not use private files, student submissions, instructor-only notes, reference 
 | Module | Category | Topic |
 | :----: | :---: | ------- |
 | M01 | Preliminary | Foundations |
-| M02 | Preliminary | AI Modelling Basics |
+| M02 | Preliminary | Prompt Engineering and RAG |
 | M03 | Core | Context Engineering and Agent Orchestration |
 | M04 | Core | LangChain Programming |
 | M05 | Core | Knowledge Agents and Stateful Workflows |
@@ -60,9 +60,9 @@ Do not use private files, student submissions, instructor-only notes, reference 
 | M01: Foundations | M01A | Python, Colab and API Safety | `M01-Foundations/Jupyter/M01A-Python-Colab-API-Safety.ipynb` |
 |  | M01B | GenAI and Agentic AI Fundamentals | `M01-Foundations/Jupyter/M01B-GenAI-Fundamentals.ipynb` |
 |  | M01C | LLMs, Function Calling, APIs and Agent Ecosystems | `M01-Foundations/Jupyter/M01C-LLMs-FunctionCalling-APIs.ipynb` |
-| M02: AI Modelling Basics | M02A | Regression and ML Basics | `M02-AI-Modeling/Jupyter/M02A-Regression-ML-Basics.ipynb` |
-|  | M02B | Deep Learning Image Classification | `M02-AI-Modeling/Jupyter/M02B-DeepLearning-ImageClassification.ipynb` |
-|  | M02C | Embeddings, Vector Data and Similarity Search | `M02-AI-Modeling/Jupyter/M02C-Embeddings-VectorData-Similarity.ipynb` |
+| M02: Prompt Engineering and RAG | M02A | Prompt Foundations | `M02-Prompt-RAG/Jupyter/M02A-Prompt-Foundations.ipynb` |
+|  | M02B | Prompt Engineering as a Control Loop | `M02-Prompt-RAG/Jupyter/M02B-Prompt-Engineering-Control-Loop.ipynb` |
+|  | M02C | Retrieval-Augmented Generation | `M02-Prompt-RAG/Jupyter/M02C-Retrieval-Augmented-Generation.ipynb` |
 | M03: Context Engineering and Agent Orchestration | M03X | Flowise Environment Setup | `M03-Context-Orchestration/Flowise/M03X-Flowise-Environment-Setup.md` |
 |  | M03A | Interface and First Chatflow | `M03-Context-Orchestration/Flowise/M03A-Flowise-Interface-First-Chatflow.md` |
 |  | M03B | Chatbot Prompting and Memory | `M03-Context-Orchestration/Flowise/M03B-Flowise-Chatbot-Prompt-Memory.md` |
