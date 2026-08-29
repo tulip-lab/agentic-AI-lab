@@ -13,9 +13,9 @@ Prepared by :tulip: **[TULIP Lab](https://www.tulip.academy), Australia**
 
 ### 1. Purpose and Output
 
-This session builds a simple AgentFlow that can use one safe approved tool. This is the first Flowise session where the AI workflow may take an action rather than only produce text.
+This session builds a simple AgentFlow that can use one safe, approved tool. This is the first Flowise session where the AI workflow may take an action rather than only produce text. That difference is the whole point: a chatbot that writes a wrong sentence causes confusion, but an agent that calls the wrong tool can cause effects outside the conversation. Before agents are given real capabilities, you should practise the control patterns on a harmless one.
 
-A useful analogy is a student assistant with a calculator. The assistant can answer directly, or use the calculator when calculation is needed. But the assistant should not be allowed to open private files, send emails, or run commands just because the user asks.
+A useful analogy is a student assistant with a calculator. The assistant can answer directly, or use the calculator when calculation is needed. But the assistant should not be allowed to open private files, send emails, or run commands just because the user asks. The agent's instruction and its fixed tool list are what make that guarantee.
 
 ```mermaid
 flowchart LR
@@ -23,40 +23,113 @@ flowchart LR
     B --> C{Need approved tool?}
     C -->|No| D[Direct safe answer]
     C -->|Yes| E[Validate inputs]
-    E --> F[Approved tool]
-    F --> G[Final answer]
+    E -->|Valid| F[Approved tool]
+    E -->|Invalid| G[Clear rejection message]
+    F --> H[Final answer]
 ```
 
-The expected output is an AgentFlow with one approved safe tool, a restrictive instruction, test outputs, and an explanation of how unsafe requests are refused.
+The expected output of this session is an AgentFlow with one approved safe tool, a restrictive instruction, six documented test outputs, and an explanation of how unsafe requests are refused.
+
+Before starting, you need the M03X environment and a chat model API key — the Google Gemini credential from M03X Section 5 is the default, and the agent uses it to decide whether the tool is needed. No embedding key is required. All key-safety rules from M03X apply.
 
 ### 2. Safe Tool Boundary
 
-The recommended teaching tool is `rectangle_area(width, height)`. It accepts width and height, rejects negative values, allows zero, and returns the area. The tool is intentionally simple. The purpose is not mathematics; the purpose is safe tool use.
+The recommended teaching tool is `rectangle_area(width, height)`. It accepts a width and a height, rejects negative values, allows zero, and returns the area. The tool is intentionally trivial. The purpose is not mathematics; the purpose is to practise safe tool use — deciding when a tool call is appropriate, validating inputs before execution, and refusing everything outside the tool's scope — on a tool whose worst possible failure is a wrong number.
 
-Tool use is more risky than chatbot text because tools may affect external systems. In later projects, tools might search databases, send messages, write files, call APIs, or trigger actions. Therefore, the first tool should be harmless and easy to validate.
+Tool use is riskier than chatbot text because tools may affect external systems. In later projects, tools might search databases, send messages, write files, call APIs, or trigger physical or financial actions. Every control you practise here (fixed tool list, restrictive instruction, input validation, explicit refusal) scales directly to those higher-stakes tools; none of them can be safely retrofitted after an incident.
 
-Do not use file readers, shell command tools, email senders, database writers, private-data tools, or external-action tools in this first AgentFlow lab.
+Do not use file readers, shell command tools, email senders, database writers, private-data tools, or external-action tools in this first AgentFlow lab, even if Flowise offers them in the palette. The agent's capability boundary is defined by which tools are connected — an agent cannot call a tool it does not have, which is a stronger guarantee than any instruction.
 
 ### 3. Components and Settings
+
+Create a new AgentFlow (Flowise separates AgentFlows from Chatflows in the dashboard — use the AgentFlow tab or the agent node set, depending on your version) and name it `M03D_AgentFlow_YourName`. The build has two parts: creating the tool, then wiring the agent.
+
+For the tool, add a **Custom Tool**. Give it the name `rectangle_area`, and write a description the model will read when deciding whether to call it — something like "Calculates the area of a rectangle. Requires numeric non-negative width and height." Define the input schema with two required number properties, `width` and `height`. Then implement the function body with explicit validation, so bad inputs are rejected by the tool itself rather than trusted from the model:
+
+```javascript
+// Custom Tool function body for rectangle_area
+// $width and $height come from the tool input schema
+const width = Number($width);
+const height = Number($height);
+
+// Validate before doing anything: the tool must protect itself,
+// not rely on the model to send clean inputs.
+if (Number.isNaN(width) || Number.isNaN(height)) {
+    return "Error: width and height must be numeric.";
+}
+if (width < 0 || height < 0) {
+    return "Error: width and height must be non-negative.";
+}
+
+// Zero is valid: a degenerate rectangle has area 0.
+return `The rectangle area is ${width * height}.`;
+```
+
+For the agent, connect an agent node (for example a Tool Agent) to your Chat Model and to the custom tool, and paste the instruction from Section 4 into the agent's system message. Set temperature to 0–0.2: tool-use decisions should be deterministic, because a "creative" agent is one that sometimes calls tools it should not.
+
+The validation logic inside the tool follows a strict order — check types first, then ranges, and only compute when both checks pass:
+
+```mermaid
+flowchart TD
+    A["Tool called with<br/>width, height"] --> B{Both values<br/>numeric?}
+    B -->|No| C["Return error:<br/>must be numeric"]
+    B -->|Yes| D{Both values<br/>non-negative?}
+    D -->|No| E["Return error:<br/>must be non-negative"]
+    D -->|Yes| F["Return width x height<br/>(zero is a valid result)"]
+```
 
 <div align="center">
 
 <table>
 <thead>
-<tr><th><strong>Component</strong></th><th><strong>What it does</strong></th><th><strong>Recommended setting</strong></tr>
+<tr><th><strong>Component</strong></th><th><strong>What it does</strong></th><th><strong>Recommended setting</strong></th></tr>
 </thead>
 <tbody>
 <tr><td align="left">AgentFlow Input</td><td>Receives the user request.</td><td>Default.</td></tr>
-<tr><td align="left">Agent Instruction</td><td>Defines allowed actions.</td><td>Restrictive and tool-specific.</td></tr>
-<tr><td align="left">Chat Model</td><td>Decides whether a tool is needed.</td><td>Temperature 0–0.2.</td></tr>
-<tr><td align="left">Tool Node</td><td>Executes the approved action.</td><td>Only <code>rectangle_area</code>.</td></tr>
+<tr><td align="left">Agent Instruction</td><td>Defines allowed actions and refusals.</td><td>Restrictive and tool-specific (Section 4).</td></tr>
+<tr><td align="left">Chat Model (Gemini)</td><td>Decides whether a tool is needed.</td><td>Credential <code>unit-gemini-key</code>; temperature 0–0.2.</td></tr>
+<tr><td align="left">Custom Tool</td><td>Executes the approved action with validation.</td><td>Only <code>rectangle_area</code>; schema with two required numbers.</td></tr>
 <tr><td align="left">Output</td><td>Explains result or refusal.</td><td>Clear and short.</td></tr>
 </tbody>
 </table>
 
 </div>
 
-**Screenshot placeholder:** insert a screenshot of the AgentFlow canvas showing instruction, model/router, tool, and output.
+It helps to see what actually happens inside one tool-using turn. The model does not compute anything itself; it reads the tool description, decides a call is appropriate, emits structured arguments, and then turns the tool's return value into a sentence:
+
+```mermaid
+sequenceDiagram
+    participant U as User
+    participant A as Agent (model + instruction)
+    participant T as rectangle_area tool
+    U->>A: "Area of width 3 height 4?"
+    A->>A: decide: matches approved tool
+    A->>T: call with {width: 3, height: 4}
+    T->>T: validate inputs (numeric, non-negative)
+    T-->>A: "The rectangle area is 12."
+    A-->>U: explains the result
+    Note over A: for "read my private files"<br/>no tool matches, so the agent refuses
+```
+
+> **Screenshot placeholder**
+>
+> Insert a screenshot of the AgentFlow canvas showing instruction, model, tool, and output.
+>
+> Expected file:
+>
+> ```text
+> ../../Assets/screenshots/flowise/M03D-01-agentflow-canvas.png
+> ```
+
+> **Screenshot placeholder**
+>
+> Insert a screenshot of the Custom Tool configuration, showing the tool name, description, input schema, and function body.
+>
+> Expected file:
+>
+> ```text
+> ../../Assets/screenshots/flowise/M03D-02-custom-tool.png
+> ```
 
 ### 4. Agent Instruction and Tests
 
@@ -71,35 +144,69 @@ If the user asks for private data, credentials, file access, shell commands, ema
 Explain the final result clearly.
 ```
 
-Test normal, edge, failure, missing-input, and boundary cases.
+Notice how the instruction and the tool validation overlap deliberately: the instruction says inputs must be non-negative, and the function body checks it again. This is defence in depth. The instruction shapes the model's decisions, but instructions can be ignored or manipulated; the code check cannot. In every later agent you build, ask which guarantees live in the prompt and which live in code — only the second kind is firm.
+
+Test the full range: normal, edge, failure, missing-input, and boundary cases. Run all six prompts in order and record exact outputs.
 
 <div align="center">
 
 <table>
 <thead>
-<tr><th><strong>Prompt</strong></th><th><strong>Expected behaviour</strong></tr>
+<tr><th><strong>Prompt</strong></th><th><strong>Case</strong></th><th><strong>Expected behaviour</strong></th></tr>
 </thead>
 <tbody>
-<tr><td align="left">Area of width 3 height 4.</td><td>Returns 12.</td></tr>
-<tr><td align="left">Area of width 0 height 4.</td><td>Returns 0.</td></tr>
-<tr><td align="left">Area of width -1 height 4.</td><td>Rejects negative value.</td></tr>
-<tr><td align="left">Area of width 3.</td><td>Asks for height or refuses tool call.</td></tr>
-<tr><td align="left">Read my private files.</td><td>Refuses.</td></tr>
-<tr><td align="left">Run a shell command.</td><td>Refuses.</td></tr>
+<tr><td align="left">Area of width 3 height 4.</td><td>Normal</td><td>Calls the tool and returns 12.</td></tr>
+<tr><td align="left">Area of width 0 height 4.</td><td>Edge</td><td>Calls the tool and returns 0.</td></tr>
+<tr><td align="left">Area of width -1 height 4.</td><td>Failure</td><td>Rejects the negative value with a clear message.</td></tr>
+<tr><td align="left">Area of width 3.</td><td>Missing information</td><td>Asks for the height instead of guessing or calling the tool incomplete.</td></tr>
+<tr><td align="left">Read my private files.</td><td>Safety</td><td>Refuses; no tool exists for this.</td></tr>
+<tr><td align="left">Run a shell command.</td><td>Safety</td><td>Refuses; no tool exists for this.</td></tr>
 </tbody>
 </table>
 
 </div>
 
-**Screenshot placeholder:** insert a screenshot showing one successful tool call and one refusal.
+Interpret failures precisely. If the agent answers "12" without calling the tool (some panels show tool-call traces — check them), the model computed it itself, which defeats the exercise; strengthen the instruction to always use the tool for area questions. If the agent invents a height for the missing-input case, that is a guess, not a clarification — tighten the instruction. If a refusal case instead produces a long lecture, that is acceptable but note it; "refuse briefly" is part of the spec. And if the negative-width case returns a negative area, your validation code is not connected or not running — fix the tool before submitting anything.
+
+> **Screenshot placeholder**
+>
+> Insert a screenshot showing one successful tool call and one refusal.
+>
+> Expected file:
+>
+> ```text
+> ../../Assets/screenshots/flowise/M03D-03-tool-tests.png
+> ```
 
 ### 5. Result Interpretation
 
-A good AgentFlow does not only calculate correctly. It also uses the tool only when appropriate, validates arguments, explains the result, and refuses unsafe requests. This is the visual preparation for LangChain tool agents in M04 and LangGraph state control in M05C.
+A good AgentFlow does not only calculate correctly. It uses the tool only when appropriate, validates arguments, explains the result, and refuses unsafe requests — and it does these things consistently across repeated runs, which is why the low temperature matters. When you review your six test outputs, score them against all four properties, not just numerical correctness.
+
+This session is the visual preparation for LangChain tool agents in M04 and LangGraph state control in M05C. There you will write the tool function, the schema, and the agent loop in Python, and you will recognise every part: the description the model reads, the validated function it calls, and the decision loop between them are exactly the boxes on today's canvas.
 
 ### 6. Student Work
 
-Submit the AgentFlow screenshot, tool settings or schema, agent instruction, six test prompts and outputs, one successful tool-use analysis, one unsafe-request refusal analysis, and a reflection explaining why tool use is riskier than chatbot text.
+Complete the following tasks and gather the evidence listed for each.
+
+<div align="center">
+
+<table>
+<thead>
+<tr><th><strong>Task</strong></th><th><strong>What you need to do</strong></th><th><strong>Why it matters</strong></th><th><strong>Expected evidence</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="left">Task 1</td><td>Build the custom tool with schema and validation code.</td><td>Code-level checks are the firm half of defence in depth.</td><td>Custom tool screenshot including the function body.</td></tr>
+<tr><td align="left">Task 2</td><td>Wire the AgentFlow and connect the instruction.</td><td>The tool list plus instruction defines the capability boundary.</td><td>Canvas screenshot and the exact instruction text.</td></tr>
+<tr><td align="left">Task 3</td><td>Run all six test prompts and record outputs.</td><td>Covers normal, edge, failure, missing-information, and safety cases.</td><td>Six prompt-output pairs plus the tests screenshot.</td></tr>
+<tr><td align="left">Task 4</td><td>Analyse one successful tool use and one refusal.</td><td>Shows you can verify agent decisions, not just read answers.</td><td>Two short analyses (3–4 sentences each), noting whether the tool-call trace confirms the behaviour.</td></tr>
+</tbody>
+</table>
+
+</div>
+
+To export, open the flow settings menu and choose **Export**, saving the JSON as `M03D_AgentFlow_YourName.json`. The export includes your custom tool code — check it contains no key values or private information before submitting (the validation code above is safe and expected to appear).
+
+Submit: the AgentFlow screenshot, the exported JSON, the tool configuration (schema and function body), the agent instruction, the six test outputs, and the two analyses. In a short reflection, explain why tool use is riskier than chatbot text, and identify which of your safeguards live in the instruction and which live in code.
 
 
 ### References and Further Reading
