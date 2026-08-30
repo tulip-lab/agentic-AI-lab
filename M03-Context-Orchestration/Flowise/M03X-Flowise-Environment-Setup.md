@@ -9,7 +9,7 @@ Prepared by :tulip: **[TULIP Lab](https://www.tulip.academy), Australia**
 
 ---
 
-## M03X: Flowise Environment, Docker Setup, API Keys and Credentials
+## Session 3X: Flowise Environment, Docker Setup, API Keys and Credentials
 
 ### 1. Purpose
 
@@ -102,17 +102,19 @@ mkdir flowise-lab
 cd flowise-lab
 ```
 
-Create a `.env` file. This keeps configuration — including the login password — outside the compose file, so the compose file itself contains no secrets and can be shared safely:
+Create a `.env` file. Current Flowise releases use an email-and-password administrator account created through the browser; the older `FLOWISE_USERNAME` and `FLOWISE_PASSWORD` variables are deprecated. The values below protect the local login session and must be long, random and different from one another. Generate them with a password manager or `openssl rand -hex 32`, then keep the file private:
 
 ```bash
 cat > .env <<'EOF'
 PORT=3000
-FLOWISE_USERNAME=admin
-FLOWISE_PASSWORD=change_this_password
+JWT_AUTH_TOKEN_SECRET=replace_with_random_value_1
+JWT_REFRESH_TOKEN_SECRET=replace_with_random_value_2
+EXPRESS_SESSION_SECRET=replace_with_random_value_3
+TOKEN_HASH_SECRET=replace_with_random_value_4
 EOF
 ```
 
-Replace `change_this_password` with your own password. Do not commit `.env` to GitHub: it may contain secrets or passwords, and `.env` should always be listed in `.gitignore`.
+Replace all four placeholder values before starting Flowise. Do not commit `.env` to GitHub: it contains security secrets, and `.env` should always be listed in `.gitignore`.
 
 Create `docker-compose.yml`:
 
@@ -126,8 +128,10 @@ services:
       - "${PORT}:3000"
     environment:
       - PORT=3000
-      - FLOWISE_USERNAME=${FLOWISE_USERNAME}
-      - FLOWISE_PASSWORD=${FLOWISE_PASSWORD}
+      - JWT_AUTH_TOKEN_SECRET=${JWT_AUTH_TOKEN_SECRET}
+      - JWT_REFRESH_TOKEN_SECRET=${JWT_REFRESH_TOKEN_SECRET}
+      - EXPRESS_SESSION_SECRET=${EXPRESS_SESSION_SECRET}
+      - TOKEN_HASH_SECRET=${TOKEN_HASH_SECRET}
       - DATABASE_PATH=/root/.flowise
       - APIKEY_PATH=/root/.flowise
       - SECRETKEY_PATH=/root/.flowise
@@ -141,7 +145,7 @@ volumes:
   flowise_data:
 ```
 
-Two settings in this file deserve attention. The `ports` line maps port 3000 inside the container to port 3000 on your machine; if another program already uses port 3000, change `PORT` in `.env` to something like `3001` and open that port in the browser instead. The `volumes` line is the persistence guarantee: everything Flowise saves — workflows, credentials, chat history — is written to the named volume `flowise_data`. Without a persistent volume, saved workflows and credentials disappear when the container is removed, which is a frustrating way to lose a lab session's work.
+Three settings in this file deserve attention. The `ports` line maps port 3000 inside the container to the port named in `.env`; if another program already uses port 3000, change `PORT` to something like `3001` and open that port in the browser instead. The authentication variables replace Flowise's unsafe default session secrets. The `volumes` line is the persistence guarantee: everything Flowise saves — workflows, credentials, chat history and the administrator account — is written to the named volume `flowise_data`. Without a persistent volume, this state disappears when the container is removed, which is a frustrating way to lose a lab session's work.
 
 Start Flowise in the background:
 
@@ -155,7 +159,7 @@ The first start downloads the image, which may take a few minutes. Then open:
 http://localhost:3000
 ```
 
-You should see a login screen; sign in with the username and password from your `.env` file, and the Chatflows dashboard should appear. If the page does not load, check the logs — the most common causes are a port conflict or a container that is still starting:
+On a fresh persistent volume, follow the browser prompt to create the first administrator account with an email address and a strong password. On later starts, sign in with that account. If your Flowise version shows a different first-run screen, follow its administrator setup prompt rather than adding the deprecated username/password variables. If the page does not load, check the logs — the most common causes are a port conflict or a container that is still starting:
 
 ```bash
 docker logs -f flowise
@@ -167,7 +171,7 @@ Stop the service when you are finished (your data stays on the volume):
 docker compose stop
 ```
 
-For a school or university lab, the instructor should test this Docker setup before class, because image download time and port conflicts are much easier to resolve outside a live session.
+For a school or university lab, the instructor should test this Docker setup before class, because image download time, first-account setup and port conflicts are much easier to resolve outside a live session. The example uses the `latest` image for independent study; a teaching offering should replace it with the exact Flowise version tested for that class so the interface does not change between the rehearsal and the demonstration.
 
 ### 4. Local npm/npx Setup
 

@@ -1,6 +1,6 @@
 [![GitHub issues](https://img.shields.io/github/issues/tulip-lab/agentic-AI-lab)](https://github.com/tulip-lab/agentic-AI-lab/issues)
 [![GitHub pull requests](https://img.shields.io/github/issues-pr/tulip-lab/agentic-AI-lab)](https://github.com/tulip-lab/agentic-AI-lab/pulls)
-[![GitHub stars](https://img.shields.io/github/stars/tulip-lab/agentic-AI-lab.svg?style=social&label=Star)](https://github.com/tulip-lab/agentic-AI-lab/stargazers/)
+[![GitHub stars](https://img.shields.io/github/stars/tulip-lab/agentic-AI-lab.svg?style=social&label=Star)](https://github.com/tulip-lab/agentic-AI-lab)
 
 ---
 
@@ -42,16 +42,40 @@ Do not use private files, student submissions, instructor-only notes, reference 
 
 ## Module Overview
 
-| Module | Category | Topic |
-| :----: | :---: | ------- |
-| M01 | Preliminary | Foundations |
-| M02 | Preliminary | Prompt Engineering and RAG |
-| M03 | Core | Context Engineering and Agent Orchestration |
-| M04 | Core | LangChain Programming |
-| M05 | Core | Knowledge Agents and Stateful Workflows |
-| M06 | Core | Multi-Agent Systems and Safety |
-| M07 | Advanced | Model Adaptation and Multimodal GenAI |
-| M08 | Advanced | Advanced Agentic AI |
+| Module | Category | Topic | Learning transition |
+| :----: | :---: | ------- | ------- |
+| M01 | Preliminary | Foundations | From Python and safe inputs to LLM, API and tool-call mental models. |
+| M02 | Preliminary | Prompt Engineering and RAG | From writing prompts to testing them as specifications and grounding answers in retrieved evidence. |
+| M03 | Core | Context Engineering and Agent Orchestration | From text-only concepts to visible Flowise workflows with memory, retrieval, tools and exposure controls. |
+| M04 | Core | LangChain Programming | From visual workflows to inspectable Python chains, tools, state-changing actions and evidence-grounded drafting. |
+| M05 | Core | Knowledge Agents and Stateful Workflows | From individual components to knowledge-grounded, stateful and human-confirmed workflows. |
+| M06 | Core | Multi-Agent Systems and Safety | From one workflow to collaborating roles, prompt-injection defence, private runtimes and governance. |
+| M07 | Advanced | Model Adaptation and Multimodal GenAI | From orchestrating existing models to evaluating adaptation, forgetting, multimodal generation and inference trade-offs. |
+| M08 | Advanced | Agent Engineering | From lab prototypes to evaluation, coding-agent practice, productisation, MCP and workflow guards. |
+
+## Learning Path and Prerequisites
+
+The default path is sequential: complete the preliminary modules before the core modules, then use the advanced modules to compare and integrate the design patterns. Each module deliberately reuses a concept from earlier work in a more capable setting.
+
+- Complete M01 before any API-backed or tool-using lab; its secret-handling and validation patterns apply throughout the unit.
+- Complete M02 before M03C or M05A–M05B; those sessions assume you can distinguish retrieval quality from answer quality.
+- Complete M03X before the remaining M03 sessions. M03A–M03D form a progression from visible information flow to memory, retrieval and safe tool use; M03E reviews one completed workflow at the deployment boundary.
+- Complete M04A before M04B–M04D. M04B introduces tool routing, M04C adds state-changing actions, and M04D combines retrieval with controlled writing.
+- Complete M05C before M06A; explicit workflow state makes multi-agent hand-offs and failure branches easier to reason about.
+- Treat M07 and M08 as advanced labs. They assume you can inspect evidence, define a safety boundary and test normal, edge or missing-information, and failure or refusal behaviour.
+
+## Practical Learning Pattern
+
+Most sessions are designed for approximately two hours and use the same learning rhythm:
+
+1. establish the purpose, expected output and prior connection;
+2. run or build a small deterministic baseline;
+3. inspect intermediate state, evidence, parameters or traces;
+4. test normal, edge or missing-information, and failure or safety behaviour;
+5. extend the baseline through clearly separated student tasks; and
+6. restart and run from the top, complete quality checks, and reflect on transfer to the next session.
+
+Optional API, model or package sections are extensions, not prerequisites for completing the core learning outcome. When a live service is unavailable, students should record the documented skipped result and continue with the mandatory local path.
 
 ## Session Schedule
 
@@ -105,3 +129,15 @@ The expanded schedule covers the following applied themes:
 - Private and open-source agents using local LLMs.
 - Agent safety, prompt injection, data poisoning and legal risk.
 - Productised AI agents, customer workflows and go-to-market thinking.
+
+## Demonstration Guidance
+
+For a live walkthrough, demonstrate the shortest complete story rather than every optional branch: state the intended output, run the baseline, inspect one intermediate trace, compare a normal case with one refusal or insufficient-context case, then show the student extension point. Use the existing recorded or mock path when network access, quota or credentials would make a live API call unreliable.
+
+The strongest cross-module demonstration sequence is M02C (transparent RAG), M03C (the same architecture on a visual canvas), M05A (the architecture rebuilt in Python) and M08A (evaluation of workflow behaviour). For tools, use M01C, M03D, M04B, M05C and M08E to show the progression from a proposed tool call to validation, explicit state transitions and pre/post execution guards.
+
+## Assessment and Responsible Use
+
+Session tasks are formative unless an offering-specific brief states otherwise. Students should submit the evidence named in each lab: completed code or workflow, test results, relevant traces or screenshots, limitations and reflection. Offering-specific assessment packages are listed in [Assignments/README.md](Assignments/README.md); submission dates, weighting and LMS details are supplied separately for each teaching offering.
+
+All work must use approved public or synthetic material. Do not upload private files, student records, credentials, instructor-only content or unpublished assessment material to notebooks, model providers, Flowise, repositories or screenshots. A successful refusal, abstention or skipped optional section is valid evidence when it demonstrates the required boundary honestly.

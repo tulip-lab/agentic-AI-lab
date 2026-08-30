@@ -14,7 +14,7 @@ torch
 torchvision
 torchaudio
 openai
-google-generativeai
+google-genai
 langchain
 langchain-core
 langchain-community

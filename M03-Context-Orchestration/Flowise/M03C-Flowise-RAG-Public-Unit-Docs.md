@@ -127,7 +127,7 @@ Test questions should check normal retrieval, module connections, insufficient c
 <tr><th><strong>Prompt</strong></th><th><strong>Expected behaviour</strong></th></tr>
 </thead>
 <tbody>
-<tr><td align="left">What does M02C teach?</td><td>Retrieves embeddings and vector-search content (normal case, assuming M02 material is indexed).</td></tr>
+<tr><td align="left">What does M02C teach?</td><td>Retrieves content about transparent retrieval, grounding, source control and the optional embeddings extension (normal case, assuming M02 material is indexed).</td></tr>
 <tr><td align="left">How does Flowise RAG relate to M02C?</td><td>Explains that Flowise visualises the retrieval pipeline.</td></tr>
 <tr><td align="left">What should I know before RAG?</td><td>Mentions chunking, embeddings, vector stores, and prompt control.</td></tr>
 <tr><td align="left">What is the final exam question?</td><td>Returns the insufficient-context sentence (missing-information case).</td></tr>
