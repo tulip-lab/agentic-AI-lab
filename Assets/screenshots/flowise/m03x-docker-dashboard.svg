@@ -2,7 +2,7 @@
 <rect width="100%" height="100%" fill="#f7f7f7"/>
 <rect x="20" y="20" width="1160" height="610" fill="none" stroke="#333" stroke-width="3"/>
 <rect x="20" y="20" width="1160" height="70" fill="#e9e9e9" stroke="#333" stroke-width="2"/>
-<text x="45" y="63" font-family="Arial" font-size="18" font-weight="700">SCREENSHOT PLACEHOLDER</text>
+<text x="45" y="63" font-family="Arial" font-size="18" font-weight="700">ORIENTATION GUIDE</text>
 <text x="350" y="63" font-family="Arial" font-size="18">Docker/local dashboard</text>
 <text x="45" y="120" font-family="Arial" font-size="15" fill="#555">Show localhost:3000 after Docker/local start.</text>
 <rect x="50" y="155" width="210" height="425" fill="#eee" stroke="#aaa" stroke-width="2"/>
@@ -18,5 +18,5 @@
 <polygon points="670,380 658,373 658,387" fill="#333"/>
 <rect x="670" y="345" width="135" height="70" rx="10" fill="#f2f2f2" stroke="#333" stroke-width="2"/>
 <text x="685" y="387" font-family="Arial" font-size="14">Settings</text>
-<text x="310" y="560" font-family="Arial" font-size="14" fill="#555">Replace with real screenshot. Blur/crop secrets, private URLs, account details and workspace names.</text>
+<text x="310" y="560" font-family="Arial" font-size="14" fill="#555">Concept only — controls may move between versions.</text>
 </svg>

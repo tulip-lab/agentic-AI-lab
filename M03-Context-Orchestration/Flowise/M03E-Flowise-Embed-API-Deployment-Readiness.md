@@ -11,9 +11,24 @@ Prepared by :tulip: **[TULIP Lab](https://www.tulip.academy), Australia**
 
 ## Session 3E: Flowise Embed, Prediction API and Deployment Readiness
 
-### 1. Purpose and Output
+[← Module 03 study guide](../README.md) · [Previous: M03D](M03D-Flowise-AgentFlow-Safe-Tools.md)
+
+| Estimated time | Prerequisites | Main evidence |
+|---|---|---|
+| 60–75 minutes | One working M03B, M03C, or M03D workflow | Exposure map, readiness checklist with evidence, boundary tests, and a share/do-not-share decision |
+
+### 1. Overview and Learning Goals
 
 This session reviews whether a Flowise workflow is safe enough to share, embed, or call through an API. You do not need to publish a production service. The goal is to understand how risk changes when a workflow moves from a private builder screen — where you are the only user and every prompt is your own — to a user-facing interface that other people, and other programs, can reach.
+
+By the end, you should be able to:
+
+- distinguish a builder preview, embed widget, and Prediction API;
+- identify the separate roles of the model-provider key and Flowise API key;
+- support every readiness judgement with observable evidence; and
+- make and justify a final **share**, **share with controls**, or **do not share** decision.
+
+![A Flowise workflow moving from prototype to deployment surfaces](../../Assets/images/flowise/m03e-deployment.svg)
 
 A prototype is like a project on your desk. A deployment is like putting that project in a public hallway. More people can touch it, so safety, privacy, cost, and access control matter more. Nothing about the workflow's internal logic changes; what changes is who can send input to it and what they might send.
 
@@ -85,15 +100,9 @@ flowchart TD
     D --> E3[Controls: safe tool list plus all chatbot controls]
 ```
 
-> **Screenshot placeholder**
->
-> Insert a screenshot of the embed or Prediction API settings. Hide API keys, the chatflow ID if your instance is reachable, internal URLs, and private workspace information.
->
-> Expected file:
->
-> ```text
-> ../../Assets/screenshots/flowise/M03E-01-embed-api-settings.png
-> ```
+![Orientation guide to embed, API, and access controls](../../Assets/screenshots/flowise/m03e-embed-api.svg)
+
+> **Exposure checkpoint:** write down the caller, entry point, authentication requirement, data reachable, tools reachable, and likely cost for your chosen workflow. Hide API keys, reachable flow IDs, internal URLs, and private workspace details in any screenshot.
 
 ### 3. Readiness Checklist
 
@@ -120,15 +129,9 @@ A workflow is not ready to share just because it works once. Work through the ch
 
 For each row, record one sentence of evidence, not just the status. For Data, name the sources and where you verified them (for RAG, this is your M03C source list). For Credentials, state that you re-opened your exported JSON and screenshots and checked them. For Access, state whether the embed page or API is actually reachable without authentication — test it, do not assume. For Cost, note that every public message spends your Gemini quota, and state what limit or monitoring exists (even "free-tier quota is the only limit" is an honest answer). For Logging, remember that Flowise stores chat history: if a stranger types personal data into your public widget, that data now sits in your workspace, which is a privacy obligation you did not plan for.
 
-> **Screenshot placeholder**
->
-> Insert a screenshot or table showing the completed readiness checklist with evidence notes.
->
-> Expected file:
->
-> ```text
-> ../../Assets/screenshots/flowise/M03E-02-readiness-checklist.png
-> ```
+![Orientation guide to an evidence-backed readiness checklist](../../Assets/screenshots/flowise/m03e-readiness.svg)
+
+> **Decision checkpoint:** any unresolved **Unknown** is treated as **Fail** for the final sharing decision. Record what evidence would resolve it; do not convert it to Pass because the workflow worked once in the builder.
 
 ### 4. Boundary Tests and Limitation Statement
 
@@ -158,7 +161,7 @@ Deployment readiness is a system-level judgement, not a feature. A workflow may 
 
 M03E prepares you for M06, where malicious instructions and security risks are studied systematically — several of your checklist rows are exactly the attack surfaces examined there — and for M08C, where productised AI agents require support, monitoring, disclaimers, and operational planning as ongoing commitments rather than one-off checks.
 
-### 6. Student Work
+### 6. Student Tasks
 
 Complete the following tasks and gather the evidence listed for each.
 
@@ -179,12 +182,14 @@ Complete the following tasks and gather the evidence listed for each.
 
 </div>
 
+### 7. Submission and Reflection
+
 Export the reviewed workflow via the flow settings menu (**Export Chatflow** or **Export**), saving the JSON as `M03E_Reviewed_YourName.json`, and check it for secrets before submitting — this export check is itself the Credentials row of your checklist in action.
 
 Submit: the selected workflow name and runtime mode, the workflow screenshot, the embed/API settings screenshot with secrets hidden, the exported JSON, the completed readiness checklist with evidence, the five boundary test outputs, and the limitation statement. In a short reflection, explain the difference between a working prototype and a responsible deployment, using at least one concrete finding from your own checklist.
 
 
-### References and Further Reading
+#### Further Readings
 
 - Flowise official documentation: <https://docs.flowiseai.com/>
 - Flowise website and local install commands: <https://flowiseai.com/>

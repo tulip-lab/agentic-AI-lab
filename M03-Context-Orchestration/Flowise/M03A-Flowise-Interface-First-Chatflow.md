@@ -11,9 +11,24 @@ Prepared by :tulip: **[TULIP Lab](https://www.tulip.academy), Australia**
 
 ## Session 3A: Flowise Interface and First Chatflow
 
-### 1. Purpose and Output
+[← Module 03 study guide](../README.md) · [Previous: M03X](M03X-Flowise-Environment-Setup.md) · [Next: M03B](M03B-Flowise-Chatbot-Prompt-Memory.md)
+
+| Estimated time | Prerequisites | Main evidence |
+|---|---|---|
+| 45–60 minutes | M03X complete; a model credential is optional for interface-only study | Saved flow, settings record, three tests, and an information-flow explanation |
+
+### 1. Overview and Learning Goals
 
 This session introduces the Flowise canvas. You will create a first chatflow, inspect the interface, and explain how information moves from user input to model output. The objective is not to build a sophisticated chatbot yet. The objective is to learn how to read a visual AI workflow, because every later session — RAG in M03C, agents in M03D, deployment in M03E — is built by reading and editing exactly this kind of diagram.
+
+By the end, you should be able to:
+
+- identify a node, edge, input handle, output handle, and model setting;
+- narrate how one user message becomes one model response;
+- distinguish a connected workflow from a merely arranged set of nodes; and
+- test normal, missing-information, and secret-request cases.
+
+![A Flowise workflow shown as visible information flow](../../Assets/images/flowise/m03a-node-edge.svg)
 
 A useful way to think about Flowise is to imagine a machine drawn on paper. The message enters from the left, moves through boxes, and an answer comes out on the right. The boxes are workflow components. The arrows show information flow.
 
@@ -27,7 +42,7 @@ Rather than memorising terms such as "node" and "edge" separately, focus on the 
 
 Before starting, complete M03X. You need a working Flowise runtime (Cloud, Docker, or local). No API key is strictly required for this session — you can build and inspect the workflow without running it — but if you already saved a Google Gemini credential in M03X, you will also be able to test the flow live. All key-safety rules from M03X Section 5 apply here: no key value may appear in any screenshot or exported file.
 
-### 2. Building the First Chatflow
+### 2. Build the First Chatflow
 
 Open Flowise using the runtime chosen in M03X. In Flowise Cloud, sign in and open the Chatflows page. In Docker or local mode, open `http://localhost:3000` and log in. Either way, you should see the Chatflows dashboard: a list of saved workflows (empty at first) and a button to add a new one.
 
@@ -49,7 +64,7 @@ flowchart LR
 
 Now build it. On the canvas, open the node palette (the **+** button), and search for the nodes you need. Flowise groups nodes by category, and the exact assembly differs slightly between Flowise versions: in most current versions, you add a *Conversation Chain* or a simple *LLM Chain* which already carries the input and output behaviour, and then attach a *Chat Model* node to it — for this unit, choose the **ChatGoogleGenerativeAI** (Gemini) node. Drag each node onto the canvas, then connect them by dragging from the small circle (the output handle) on one node to the matching input handle on the next. Flowise only lets you connect compatible handles, so if a connection refuses to attach, you are joining the wrong pair — hover over the handles to read their expected types.
 
-In the Chat Model node, select your saved credential (for example `unit-gemini-key` from M03X) from the credential dropdown, and pick a model such as `gemini-2.0-flash`. Leave temperature at its default or set it to `0.2`; low temperature keeps answers stable, which makes classroom results comparable. Save the flow again.
+In the Chat Model node, select your saved credential (for example `unit-gemini-key` from M03X) from the credential dropdown, and choose an instructor-approved model that is available in your account. Model names and availability change, so prefer the in-app dropdown over copying a model name from an older screenshot. Set temperature to `0.2`; low temperature keeps answers stable, which makes classroom results comparable. Save the flow again.
 
 Three things can happen at this point, and all three are instructive. If the credential is configured correctly, the flow is runnable and you can test it in the next section. If you have no credential yet, the flow will show a warning on the model node — you can still inspect every setting, and a non-running workflow still teaches the layout and component logic. If the nodes will not connect at all, check that you are using a chain node compatible with your chat model node; mixing node types from different workflow families is the most common first-lab error.
 
@@ -61,21 +76,15 @@ Three things can happen at this point, and all three are instructive. If the cre
 </thead>
 <tbody>
 <tr><td align="left">Conversation / LLM Chain</td><td>Carries the message from input to model and back to output.</td><td>Default settings.</td></tr>
-<tr><td align="left">Chat Model (Gemini)</td><td>Generates the reply.</td><td>Credential <code>unit-gemini-key</code>; model <code>gemini-2.0-flash</code>; temperature 0.2.</td></tr>
+<tr><td align="left">Chat Model (Gemini)</td><td>Generates the reply.</td><td>Credential <code>unit-gemini-key</code>; an available instructor-approved model; temperature 0.2.</td></tr>
 </tbody>
 </table>
 
 </div>
 
-> **Screenshot placeholder**
->
-> Insert a screenshot of the first chatflow canvas here. It should show the flow name and the connected components. Hide any private workspace details.
->
-> Expected file:
->
-> ```text
-> ../../Assets/screenshots/flowise/M03A-01-first-chatflow-canvas.png
-> ```
+![Orientation guide to a first chatflow canvas](../../Assets/screenshots/flowise/m03a-first-chatflow.svg)
+
+> **Checkpoint — read the canvas aloud:** “The chain receives the chat message, calls the connected chat model using a saved credential, and returns the generated text.” If you cannot point to each part while saying this, inspect the connections before testing.
 
 ### 3. Component Settings to Inspect
 
@@ -117,15 +126,7 @@ sequenceDiagram
 
 Notice that the secret key never travels through the canvas: the model node holds only a credential reference, and Flowise attaches the real key server-side when it makes the API call. That is why a screenshot of your canvas is safe to submit, while a screenshot of the Credentials creation dialog would not be.
 
-> **Screenshot placeholder**
->
-> Insert a screenshot of the opened Chat Model node settings panel, showing the model name, credential dropdown (name only, no key value), and temperature.
->
-> Expected file:
->
-> ```text
-> ../../Assets/screenshots/flowise/M03A-02-chat-model-settings.png
-> ```
+> **Evidence checkpoint:** capture your own model-settings screenshot showing the model name, credential name only, and temperature. Before saving it, scan the entire image for key values, account details, private URLs, and unrelated flows.
 
 ### 4. Result Interpretation
 
@@ -150,17 +151,9 @@ If the model runs, open the chat test panel (the chat bubble icon in the top-rig
 
 A suitable normal answer is short and describes the workflow honestly. If the call fails instead, read the error message before changing anything: an authentication error means the credential is missing, unselected, or wrong; a model-not-found error means the model name does not match what your key can access; a timeout usually means a network or quota issue. Note that this bare flow has no system instruction yet, so its refusals rely on default model behaviour — M03B adds the explicit scope control that makes refusals reliable.
 
-> **Screenshot placeholder**
->
-> Insert a screenshot of the chat test panel showing at least the normal test prompt and its answer.
->
-> Expected file:
->
-> ```text
-> ../../Assets/screenshots/flowise/M03A-03-test-panel.png
-> ```
+> **Checkpoint — interpret before changing:** authentication errors point to credentials, model-not-found errors point to model availability, and connection/type errors point to the canvas. Change only the setting implicated by the error, then rerun the same prompt.
 
-### 5. Student Work
+### 5. Student Tasks
 
 Complete the following tasks and gather the evidence listed for each. Where your model is not runnable (no key yet), state that explicitly and submit the inspection evidence instead of test outputs.
 
@@ -180,12 +173,14 @@ Complete the following tasks and gather the evidence listed for each. Where your
 
 </div>
 
+### 6. Submission and Reflection
+
 To export your workflow for submission, open the flow settings menu (the gear or three-dot icon in the top bar of the canvas) and choose **Export Chatflow**. This downloads a JSON file describing your nodes and connections. Open the JSON in a text editor and confirm it contains no key values before submitting — a correctly used credential appears only as a reference ID, never as a secret string. Rename the file to match your flow name, for example `M03A_First_Chatflow_YourName.json`.
 
 Submit: your runtime mode (Cloud, Docker, or local), the workflow name, the exported JSON file, the screenshots above, the three test results, and your information-flow explanation. In a short reflection (3–5 sentences), explain how seeing the application as a visual workflow makes it easier to understand before implementing similar logic in code with LangChain or LangGraph in Module 04.
 
 
-### References and Further Reading
+#### Further Readings
 
 - Flowise official documentation: <https://docs.flowiseai.com/>
 - Flowise website and local install commands: <https://flowiseai.com/>

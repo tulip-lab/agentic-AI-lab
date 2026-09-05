@@ -11,9 +11,24 @@ Prepared by :tulip: **[TULIP Lab](https://www.tulip.academy), Australia**
 
 ## Session 3D: Flowise AgentFlow with Safe Tool Use
 
-### 1. Purpose and Output
+[← Module 03 study guide](../README.md) · [Previous: M03C](M03C-Flowise-RAG-Public-Unit-Docs.md) · [Next: M03E](M03E-Flowise-Embed-API-Deployment-Readiness.md)
+
+| Estimated time | Prerequisites | Main evidence |
+|---|---|---|
+| 75–90 minutes | M03B scope-control concepts; a working chat-model credential | AgentFlow, validated tool, six boundary tests, and tool-call analysis |
+
+### 1. Overview and Learning Goals
 
 This session builds a simple AgentFlow that can use one safe, approved tool. This is the first Flowise session where the AI workflow may take an action rather than only produce text. That difference is the whole point: a chatbot that writes a wrong sentence causes confusion, but an agent that calls the wrong tool can cause effects outside the conversation. Before agents are given real capabilities, you should practise the control patterns on a harmless one.
+
+By the end, you should be able to:
+
+- explain how a tool description and input schema shape the model's decision;
+- place non-negotiable validation in code rather than relying only on a prompt;
+- verify from a trace whether the tool was actually called; and
+- distinguish normal, edge, invalid, missing-input, and out-of-scope behaviour.
+
+![AgentFlow adds controlled and validated tool use](../../Assets/images/flowise/m03d-agentflow.svg)
 
 A useful analogy is a student assistant with a calculator. The assistant can answer directly, or use the calculator when calculation is needed. But the assistant should not be allowed to open private files, send emails, or run commands just because the user asks. The agent's instruction and its fixed tool list are what make that guarantee.
 
@@ -42,7 +57,7 @@ Do not use file readers, shell command tools, email senders, database writers, p
 
 ### 3. Components and Settings
 
-Create a new AgentFlow (Flowise separates AgentFlows from Chatflows in the dashboard — use the AgentFlow tab or the agent node set, depending on your version) and name it `M03D_AgentFlow_YourName`. The build has two parts: creating the tool, then wiring the agent.
+Create a new AgentFlow and name it `M03D_AgentFlow_YourName`. In Agentflow V2, keep the required **Start** node, add an **Agent** node, choose the chat model inside that node, give the agent access to the approved tool, and connect the path to **End** if your version uses an explicit end node. Older Flowise versions may present a Tool Agent with separate model and tool inputs. The labels differ, but the required structure is the same: user input → agent decision → one approved tool → final answer. The build has two parts: creating the tool, then wiring the agent.
 
 For the tool, add a **Custom Tool**. Give it the name `rectangle_area`, and write a description the model will read when deciding whether to call it — something like "Calculates the area of a rectangle. Requires numeric non-negative width and height." Define the input schema with two required number properties, `width` and `height`. Then implement the function body with explicit validation, so bad inputs are rejected by the tool itself rather than trusted from the model:
 
@@ -65,7 +80,7 @@ if (width < 0 || height < 0) {
 return `The rectangle area is ${width * height}.`;
 ```
 
-For the agent, connect an agent node (for example a Tool Agent) to your Chat Model and to the custom tool, and paste the instruction from Section 4 into the agent's system message. Set temperature to 0–0.2: tool-use decisions should be deterministic, because a "creative" agent is one that sometimes calls tools it should not.
+For the agent, select the chat model and custom tool in the Agent node (or connect them to a Tool Agent in an older builder), then paste the instruction from Section 4 into the system message. Set temperature to 0–0.2: tool-use decisions should be repeatable enough to compare across tests, and higher randomness is not useful for this task.
 
 The validation logic inside the tool follows a strict order — check types first, then ranges, and only compute when both checks pass:
 
@@ -95,7 +110,7 @@ flowchart TD
 
 </div>
 
-It helps to see what actually happens inside one tool-using turn. The model does not compute anything itself; it reads the tool description, decides a call is appropriate, emits structured arguments, and then turns the tool's return value into a sentence:
+It helps to see the intended path inside one tool-using turn. The model should read the tool description, decide that a call is appropriate, emit structured arguments, and then turn the tool's return value into a sentence. It may be capable of doing the arithmetic itself, which is why you must inspect the trace rather than infer tool use from a correct number:
 
 ```mermaid
 sequenceDiagram
@@ -111,25 +126,9 @@ sequenceDiagram
     Note over A: for "read my private files"<br/>no tool matches, so the agent refuses
 ```
 
-> **Screenshot placeholder**
->
-> Insert a screenshot of the AgentFlow canvas showing instruction, model, tool, and output.
->
-> Expected file:
->
-> ```text
-> ../../Assets/screenshots/flowise/M03D-01-agentflow-canvas.png
-> ```
+![Orientation guide to an AgentFlow canvas](../../Assets/screenshots/flowise/m03d-agentflow.svg)
 
-> **Screenshot placeholder**
->
-> Insert a screenshot of the Custom Tool configuration, showing the tool name, description, input schema, and function body.
->
-> Expected file:
->
-> ```text
-> ../../Assets/screenshots/flowise/M03D-02-custom-tool.png
-> ```
+> **Build checkpoint:** the agent must have access to exactly one approved tool. Capture your own tool configuration showing the name, description, schema, and function body, but scan the entire image for secrets and private workspace details first.
 
 ### 4. Agent Instruction and Tests
 
@@ -147,6 +146,8 @@ Explain the final result clearly.
 Notice how the instruction and the tool validation overlap deliberately: the instruction says inputs must be non-negative, and the function body checks it again. This is defence in depth. The instruction shapes the model's decisions, but instructions can be ignored or manipulated; the code check cannot. In every later agent you build, ask which guarantees live in the prompt and which live in code — only the second kind is firm.
 
 Test the full range: normal, edge, failure, missing-input, and boundary cases. Run all six prompts in order and record exact outputs.
+
+Also test the tool validation directly. If your version provides a tool test action, call `rectangle_area` once with `width = -1` and `height = 4`. Otherwise, make a temporary copy of the flow and route those fixed values through a deterministic Tool node. The result must be the code-level non-negative error. This direct check proves that the function protects itself even if an agent-level instruction changes later.
 
 <div align="center">
 
@@ -168,15 +169,9 @@ Test the full range: normal, edge, failure, missing-input, and boundary cases. R
 
 Interpret failures precisely. If the agent answers "12" without calling the tool (some panels show tool-call traces — check them), the model computed it itself, which defeats the exercise; strengthen the instruction to always use the tool for area questions. If the agent invents a height for the missing-input case, that is a guess, not a clarification — tighten the instruction. If a refusal case instead produces a long lecture, that is acceptable but note it; "refuse briefly" is part of the spec. And if the negative-width case returns a negative area, your validation code is not connected or not running — fix the tool before submitting anything.
 
-> **Screenshot placeholder**
->
-> Insert a screenshot showing one successful tool call and one refusal.
->
-> Expected file:
->
-> ```text
-> ../../Assets/screenshots/flowise/M03D-03-tool-tests.png
-> ```
+![Orientation guide to successful, invalid, and refused tool requests](../../Assets/screenshots/flowise/m03d-tool-tests.svg)
+
+> **Trace checkpoint:** a numerically correct answer is not enough. Confirm that the normal and zero-width cases show a real tool invocation, that the direct negative-input test reaches the validation code and returns its error, and that unrelated requests show no tool call.
 
 ### 5. Result Interpretation
 
@@ -184,7 +179,7 @@ A good AgentFlow does not only calculate correctly. It uses the tool only when a
 
 This session is the visual preparation for LangChain tool agents in M04 and LangGraph state control in M05C. There you will write the tool function, the schema, and the agent loop in Python, and you will recognise every part: the description the model reads, the validated function it calls, and the decision loop between them are exactly the boxes on today's canvas.
 
-### 6. Student Work
+### 6. Student Tasks
 
 Complete the following tasks and gather the evidence listed for each.
 
@@ -195,7 +190,7 @@ Complete the following tasks and gather the evidence listed for each.
 <tr><th><strong>Task</strong></th><th><strong>What you need to do</strong></th><th><strong>Why it matters</strong></th><th><strong>Expected evidence</strong></th></tr>
 </thead>
 <tbody>
-<tr><td align="left">Task 1</td><td>Build the custom tool with schema and validation code.</td><td>Code-level checks are the firm half of defence in depth.</td><td>Custom tool screenshot including the function body.</td></tr>
+<tr><td align="left">Task 1</td><td>Build the custom tool with schema and validation code, then run the direct negative-input check.</td><td>Code-level checks are the firm half of defence in depth.</td><td>Custom tool screenshot including the function body and the direct validation result.</td></tr>
 <tr><td align="left">Task 2</td><td>Wire the AgentFlow and connect the instruction.</td><td>The tool list plus instruction defines the capability boundary.</td><td>Canvas screenshot and the exact instruction text.</td></tr>
 <tr><td align="left">Task 3</td><td>Run all six test prompts and record outputs.</td><td>Covers normal, edge, failure, missing-information, and safety cases.</td><td>Six prompt-output pairs plus the tests screenshot.</td></tr>
 <tr><td align="left">Task 4</td><td>Analyse one successful tool use and one refusal.</td><td>Shows you can verify agent decisions, not just read answers.</td><td>Two short analyses (3–4 sentences each), noting whether the tool-call trace confirms the behaviour.</td></tr>
@@ -204,12 +199,14 @@ Complete the following tasks and gather the evidence listed for each.
 
 </div>
 
+### 7. Submission and Reflection
+
 To export, open the flow settings menu and choose **Export**, saving the JSON as `M03D_AgentFlow_YourName.json`. The export includes your custom tool code — check it contains no key values or private information before submitting (the validation code above is safe and expected to appear).
 
-Submit: the AgentFlow screenshot, the exported JSON, the tool configuration (schema and function body), the agent instruction, the six test outputs, and the two analyses. In a short reflection, explain why tool use is riskier than chatbot text, and identify which of your safeguards live in the instruction and which live in code.
+Submit: the AgentFlow screenshot, the exported JSON, the tool configuration (schema and function body), the direct validation result, the agent instruction, the six agent test outputs, and the two analyses. In a short reflection, explain why tool use is riskier than chatbot text, and identify which of your safeguards live in the instruction and which live in code.
 
 
-### References and Further Reading
+#### Further Readings
 
 - Flowise official documentation: <https://docs.flowiseai.com/>
 - Flowise website and local install commands: <https://flowiseai.com/>
@@ -217,3 +214,4 @@ Submit: the AgentFlow screenshot, the exported JSON, the tool configuration (sch
 - Flowise Docker image: <https://hub.docker.com/r/flowiseai/flowise>
 - Flowise environment variables: <https://docs.flowiseai.com/configuration/environment-variables>
 - Flowise app-level authorization: <https://docs.flowiseai.com/configuration/authorization/app-level>
+- Flowise Agentflow V2: <https://docs.flowiseai.com/using-flowise/agentflowv2>

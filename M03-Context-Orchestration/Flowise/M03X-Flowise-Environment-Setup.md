@@ -11,9 +11,24 @@ Prepared by :tulip: **[TULIP Lab](https://www.tulip.academy), Australia**
 
 ## Session 3X: Flowise Environment, Docker Setup, API Keys and Credentials
 
-### 1. Purpose
+[← Module 03 study guide](../README.md) · [Next: M03A](M03A-Flowise-Interface-First-Chatflow.md)
+
+| Estimated time | Prerequisites | You will finish with |
+|---|---|---|
+| 45–75 minutes | A modern browser; Docker or Node.js only if using a local runtime | A reachable Flowise dashboard, a declared runtime choice, and a safely stored model credential |
+
+### 1. Overview and Learning Goals
 
 M03X is a prerequisite session. Complete it before M03A. The goal is to make the Flowise environment understandable before you begin building workflows. By the end of this session you should know what Flowise Cloud is, what Docker Flowise is, what local npm/npx Flowise is, which one you are using, which API keys you need for each Module 03 session, and where credentials should be stored so that no secret ever appears in your work.
+
+By the end, you should be able to:
+
+- choose a runtime and explain the trade-off you accepted;
+- open the Flowise dashboard and identify Chatflow, Agentflow, and Credentials;
+- distinguish a model-provider key from a Flowise API key; and
+- verify that no secret appears in a screenshot, prompt, export, or Git commit.
+
+![Three Flowise runtime choices leading to the same learning goals](../../Assets/images/flowise/m03x-runtime-map.svg)
 
 Flowise can be understood as a visual workshop for AI applications. Instead of writing the whole application in code, you connect visible blocks on a canvas. A block may represent a prompt, a chat model, an embedding model, a vector store, a retriever, a memory component, or a tool. The arrows between blocks show how information moves. This visual view matters for learning: when you later write the same logic in LangChain or LangGraph, you will already have a mental picture of what each component does and how data flows between them.
 
@@ -54,25 +69,13 @@ Local npm/npx Flowise runs directly through Node.js on your machine. It is usefu
 
 Whichever mode you use, confirm that you can reach the Chatflows dashboard before moving on. The dashboard is the home page of Flowise: it lists your saved workflows and provides the button that creates a new one. If the dashboard does not load, nothing else in Module 03 will work, so resolve this first.
 
-> **Screenshot placeholder**
->
-> Insert a screenshot of the Flowise Cloud Chatflows dashboard here. It should show the Chatflows list and the "Add New" (or equivalent) button. Blur account name, workspace name, private URLs, and any usage or billing details.
->
-> Expected file:
->
-> ```text
-> ../../Assets/screenshots/flowise/M03X-01-cloud-dashboard.png
-> ```
+The orientation guides below show what to look for; they are not pixel-perfect screenshots. Flowise labels and control positions can change between releases, so search by concept when your screen differs.
 
-> **Screenshot placeholder**
->
-> Insert a screenshot of Docker or local Flowise opened at `http://localhost:3000`. It should demonstrate that the interface is conceptually similar to Flowise Cloud.
->
-> Expected file:
->
-> ```text
-> ../../Assets/screenshots/flowise/M03X-02-local-dashboard.png
-> ```
+![Orientation guide to the Flowise Cloud dashboard](../../Assets/screenshots/flowise/m03x-cloud-dashboard.svg)
+
+![Orientation guide to a local Flowise dashboard](../../Assets/screenshots/flowise/m03x-docker-dashboard.svg)
+
+> **Checkpoint — do not continue yet:** you can open the dashboard, identify your runtime mode, and find the control for creating a flow. Capture your own screenshot for evidence only after hiding account, workspace, billing, and private URL details.
 
 ### 3. Docker Setup
 
@@ -102,7 +105,7 @@ mkdir flowise-lab
 cd flowise-lab
 ```
 
-Create a `.env` file. Current Flowise releases use an email-and-password administrator account created through the browser; the older `FLOWISE_USERNAME` and `FLOWISE_PASSWORD` variables are deprecated. The values below protect the local login session and must be long, random and different from one another. Generate them with a password manager or `openssl rand -hex 32`, then keep the file private:
+Create a `.env` file. Current Flowise releases support application authentication and use server-side secrets for sessions and tokens; older username/password environment variables are deprecated. First-run screens differ between versions, so follow the current browser prompt and the official authorization guide linked below. The values here must be long, random, and different from one another. Generate them with a password manager or `openssl rand -hex 32`, then keep the file private:
 
 ```bash
 cat > .env <<'EOF'
@@ -159,7 +162,7 @@ The first start downloads the image, which may take a few minutes. Then open:
 http://localhost:3000
 ```
 
-On a fresh persistent volume, follow the browser prompt to create the first administrator account with an email address and a strong password. On later starts, sign in with that account. If your Flowise version shows a different first-run screen, follow its administrator setup prompt rather than adding the deprecated username/password variables. If the page does not load, check the logs — the most common causes are a port conflict or a container that is still starting:
+On a fresh persistent volume, follow the browser's first-run authentication prompt. On later starts, sign in with the account you created. If your version shows a different screen, use the current official authorization guide rather than copying an older username/password recipe. If the page does not load, check the logs — the most common causes are a port conflict or a container that is still starting:
 
 ```bash
 docker logs -f flowise
@@ -175,11 +178,17 @@ For a school or university lab, the instructor should test this Docker setup bef
 
 ### 4. Local npm/npx Setup
 
-Local npm/npx setup is shorter but depends on Node.js. Check that you have a recent Node.js LTS version installed (`node --version`), then install and start Flowise:
+Local npm/npx setup is shorter but depends on Node.js. Check that you have a current Node.js LTS version installed (`node --version`), then choose one installation path:
+
+```bash
+npx flowise start
+```
+
+or:
 
 ```bash
 npm install -g flowise
-npx flowise start
+flowise start
 ```
 
 Open:
@@ -250,15 +259,9 @@ flowchart LR
 
 In Flowise, open **Credentials** from the left-hand menu, click **Add Credential**, choose the provider (for example *Google Generative AI*), paste the API key into the credential field, and save it with a clear name such as `unit-gemini-key`. Later, inside a Chat Model or Embeddings node, you select that saved credential from a dropdown instead of pasting the key. If a model call fails with an authentication error, the usual causes are a mistyped key, a key created for the wrong project, or a node that has no credential selected at all.
 
-> **Screenshot placeholder**
->
-> Insert a screenshot of the Credentials screen here. It should show where credentials are created and selected, but no key value should be visible.
->
-> Expected file:
->
-> ```text
-> ../../Assets/screenshots/flowise/M03X-03-credentials.png
-> ```
+![Orientation guide to the Flowise Credentials area](../../Assets/screenshots/flowise/m03x-credentials.svg)
+
+> **Checkpoint — secret-safe evidence:** your screenshot may show the credential name and provider, but never the key value. If a key is visible, do not rely on blurring the screenshot: revoke the exposed key first, create a replacement, and then recapture the screen safely.
 
 To summarise the safety rules for the whole module: keys live only in the credential manager and your private notes; screenshots must never show a key value; exported workflow JSON must be checked for secrets before submission; and `.env` files must never be committed. Every later session assumes you follow these rules and refers back to this section instead of repeating them.
 
@@ -307,7 +310,10 @@ What should never appear in screenshots?
 Write your answers in a short note — one or two sentences each is enough. Some instructors collect this note as evidence of setup completion; even if yours does not, the note is worth keeping because every later session assumes these answers. As a final self-check, confirm three things in practice, not just on paper: your Flowise dashboard opens, your Gemini key is saved in the credential manager under a clear name, and no secret value is visible anywhere on screen. If all three hold, you are ready for M03A.
 
 
-### References and Further Reading
+If one check fails, use this order: confirm the dashboard address and runtime first, confirm the model credential second, then test one model call. Changing several settings at once makes the real cause harder to find.
+
+
+#### Further Readings
 
 - Flowise official documentation: <https://docs.flowiseai.com/>
 - Flowise website and local install commands: <https://flowiseai.com/>
@@ -316,3 +322,5 @@ Write your answers in a short note — one or two sentences each is enough. Some
 - Flowise environment variables: <https://docs.flowiseai.com/configuration/environment-variables>
 - Flowise app-level authorization: <https://docs.flowiseai.com/configuration/authorization/app-level>
 - Google AI Studio API keys: <https://aistudio.google.com/app/apikey>
+- Gemini API model lifecycle and current model names: <https://ai.google.dev/gemini-api/docs/models>
+- Gemini API billing and free-tier notes: <https://ai.google.dev/gemini-api/docs/billing>

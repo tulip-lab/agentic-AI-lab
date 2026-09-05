@@ -11,9 +11,24 @@ Prepared by :tulip: **[TULIP Lab](https://www.tulip.academy), Australia**
 
 ## Session 3B: Flowise Chatbot with Prompt and Optional Memory
 
-### 1. Purpose and Output
+[← Module 03 study guide](../README.md) · [Previous: M03A](M03A-Flowise-Interface-First-Chatflow.md) · [Next: M03C](M03C-Flowise-RAG-Public-Unit-Docs.md)
+
+| Estimated time | Prerequisites | Main evidence |
+|---|---|---|
+| 60–75 minutes | M03A flow and a working chat-model credential | Controlled prompt, documented settings, five tests, and an optional memory comparison |
+
+### 1. Overview and Learning Goals
 
 This session builds a controlled chatbot. A chatbot receives a message and writes a reply. That sounds simple, but a useful chatbot needs scope control: it should know what it is allowed to answer, what it should refuse, and when it should admit uncertainty. In M03A the flow had no instructions at all — whatever the model did by default was what you got. In this session you take control of that behaviour with a system instruction, deliberate model settings, and (optionally) conversation memory.
+
+By the end, you should be able to:
+
+- write a system instruction with role, scope, refusal, and uncertainty rules;
+- justify a low-temperature setting for predictable support answers;
+- explain what memory adds to the model context and what it does not add; and
+- diagnose an over-permissive, over-restrictive, or memory-dependent response.
+
+![Controlled chatbot workflow with optional memory](../../Assets/images/flowise/m03b-chatbot.svg)
 
 A practical analogy is a school help desk. A help desk assistant may explain the timetable and public instructions. It should not invent exam questions, reveal private staff notes, or pretend to access hidden files. The system instruction is the rule sheet for that assistant: it is read before every user message and shapes every reply.
 
@@ -80,27 +95,11 @@ Buffer memory simply keeps the recent conversation verbatim; it is the easiest k
 
 </div>
 
-The temperature range 0.1–0.3 deserves a sentence of justification, because you will be asked for one in the submission. At low temperature the model picks high-probability wording, so the same question gives nearly the same answer each time — which is what you want from a help desk, and what makes your five test results reproducible. At high temperature (0.8 and above) answers become varied and creative, which is useful for brainstorming but makes scope control and testing unreliable.
+The temperature range 0.1–0.3 deserves a sentence of justification, because you will be asked for one in the submission. At low temperature the model favours high-probability wording, so repeated answers are usually more similar — which is what you want from a help desk and makes your five test results easier to compare. It does not guarantee identical output. At high temperature, answers are generally more varied and creative, which can be useful for brainstorming but is less useful for scope-control tests.
 
-> **Screenshot placeholder**
->
-> Insert a screenshot of the chatbot canvas here. It should show input, prompt, model, and output components (and the memory node if you added one).
->
-> Expected file:
->
-> ```text
-> ../../Assets/screenshots/flowise/M03B-01-chatbot-canvas.png
-> ```
+![Orientation guide to the controlled-chatbot canvas](../../Assets/screenshots/flowise/m03b-chatbot-canvas.svg)
 
-> **Screenshot placeholder**
->
-> Insert a screenshot of the Buffer Memory node connected to the chain, with its settings panel open.
->
-> Expected file:
->
-> ```text
-> ../../Assets/screenshots/flowise/M03B-02-memory-node.png
-> ```
+> **Build checkpoint:** test the baseline without memory first. Only add memory after the five single-turn tests pass; otherwise you will not know whether a failure comes from the prompt, the model, or previous chat history.
 
 ### 3. System Instruction
 
@@ -117,6 +116,8 @@ Keep answers clear and practical.
 Read the instruction line by line, because each line does a different job. The first line sets the role, which anchors the tone of every answer. The second line defines the positive scope: what the assistant *is* for. The third line closes the most dangerous failure mode — a fluent model happily inventing "instructor solutions" if asked. The fourth line handles uncertainty: without it, models tend to guess rather than admit a gap. The last line controls style. When you later adapt the instruction, keep all four functions present — role, scope, refusals, uncertainty — even if you rewrite the words.
 
 This instruction is deliberately restrictive. In later sessions the chatbot will receive retrieved documents (M03C) or tool outputs (M03D), but it should still follow a defined scope. A powerful model without boundaries is not a reliable teaching assistant, and everything in M03C–M03E assumes the discipline you practise here.
+
+Before testing, underline the four functions in your own instruction: **role**, **allowed scope**, **refusal boundary**, and **uncertainty response**. If one is missing, revise the instruction now rather than trying to explain the failure later.
 
 ### 4. Testing and Output Interpretation
 
@@ -143,19 +144,13 @@ If a boundary prompt is answered instead of refused, do not shrug and move on �
 
 If you enabled memory, add a two-turn test: ask "What should I learn before RAG?" and then follow up with "Explain the second of those more simply." With memory working, the follow-up resolves correctly; without memory (or with a broken memory connection), the model will ask what you are referring to or guess. Recording this contrast is the cleanest possible evidence that you understand what memory does.
 
-> **Screenshot placeholder**
->
-> Insert a screenshot of the chat test panel showing at least one normal answer and one boundary refusal.
->
-> Expected file:
->
-> ```text
-> ../../Assets/screenshots/flowise/M03B-03-test-panel.png
-> ```
+![Orientation guide to normal, follow-up, and boundary tests](../../Assets/screenshots/flowise/m03b-test-panel.svg)
+
+> **Evidence checkpoint:** capture one normal answer and one boundary refusal in your own test panel. If memory is enabled, start a new session before the five baseline tests so earlier turns do not contaminate the comparison.
 
 When you analyse the outputs, remember that a good answer is relevant, clear, scoped, and honest about uncertainty. A weak answer may sound confident but invent details — fluency is not the same as correctness, and learning to spot the difference is one of the main outcomes of this session.
 
-### 5. Student Work
+### 5. Student Tasks
 
 Complete the following tasks and gather the evidence listed for each.
 
@@ -176,12 +171,14 @@ Complete the following tasks and gather the evidence listed for each.
 
 </div>
 
+### 6. Submission and Reflection
+
 To export, open the flow settings menu and choose **Export Chatflow**, saving the JSON as `M03B_Chatbot_YourName.json`. Open the file and confirm that it contains your system instruction (that is fine — the instruction is not a secret) but no API key values before submitting.
 
 Submit: the workflow screenshot, the exported JSON, the system instruction, the model settings with justification, the five prompt-response pairs, the memory evidence (or opt-out sentence), and the two analyses. In a short reflection, explain why this controlled chatbot is the foundation for RAG in M03C and AgentFlow in M03D: retrieval and tools add new capabilities, but both still rely on the scope and refusal discipline you configured here.
 
 
-### References and Further Reading
+#### Further Readings
 
 - Flowise official documentation: <https://docs.flowiseai.com/>
 - Flowise website and local install commands: <https://flowiseai.com/>

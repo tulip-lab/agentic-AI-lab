@@ -11,9 +11,24 @@ Prepared by :tulip: **[TULIP Lab](https://www.tulip.academy), Australia**
 
 ## Session 3C: Flowise RAG over Public Unit Documents
 
-### 1. Purpose and Output
+[← Module 03 study guide](../README.md) · [Previous: M03B](M03B-Flowise-Chatbot-Prompt-Memory.md) · [Next: M03D](M03D-Flowise-AgentFlow-Safe-Tools.md)
+
+| Estimated time | Prerequisites | Main evidence |
+|---|---|---|
+| 75–100 minutes | M03B concepts; chat and embeddings access; two or three short public documents | RAG flow, indexing record, five queries, source inspection, and retrieval analysis |
+
+### 1. Overview and Learning Goals
 
 This session builds a RAG workflow. RAG means retrieval-augmented generation: the workflow first retrieves relevant public text, then uses that text to answer. Without retrieval, a chatbot answers mainly from model behaviour and prompt context — it knows nothing specific about your unit. With retrieval, the system can use selected documents, and you decide exactly which documents those are.
+
+By the end, you should be able to:
+
+- separate one-time indexing from per-question retrieval and generation;
+- explain chunk size, overlap, and `topK` as trade-offs rather than magic values;
+- verify an answer by inspecting its retrieved chunks or returned sources; and
+- enforce the public-data boundary before indexing.
+
+![RAG retrieves context before generating an answer](../../Assets/images/flowise/m03c-rag.svg)
 
 A simple analogy is a student answering with the textbook open. First the student finds the relevant page; then the student answers. If the wrong page is opened, the answer may still sound fluent but be poorly supported. This is why the session asks you to inspect what was retrieved, not just what was answered.
 
@@ -85,25 +100,9 @@ Create a new chatflow named `M03C_RAG_YourName`. The RAG canvas has more nodes t
 
 The numeric settings are trade-offs, and you should be able to explain each one. Chunk size controls how much text travels together: chunks of 500–800 characters usually hold one coherent idea, whereas very small chunks lose context ("it is due Friday" — what is?) and very large chunks dilute the match and waste model context. Overlap of 50–100 characters means consecutive chunks share a margin, so a sentence that straddles a boundary still appears whole in at least one chunk. topK is how many chunks the retriever hands to the model: 3 is a good start; raising it helps when answers need information spread across chunks, but too high a value drowns the relevant chunk in near-misses. One non-negotiable rule: the embeddings model used at query time must be the same one used at indexing time, because vectors from different models live in different spaces and similarity between them is meaningless.
 
-> **Screenshot placeholder**
->
-> Insert a screenshot of the RAG canvas showing loader, splitter, embeddings, vector store, retriever, prompt, and model.
->
-> Expected file:
->
-> ```text
-> ../../Assets/screenshots/flowise/M03C-01-rag-canvas.png
-> ```
+![Orientation guide to a RAG canvas](../../Assets/screenshots/flowise/m03c-rag-canvas.svg)
 
-> **Screenshot placeholder**
->
-> Insert a screenshot of the upsert (indexing) result, showing the number of chunks added to the vector store.
->
-> Expected file:
->
-> ```text
-> ../../Assets/screenshots/flowise/M03C-02-upsert-result.png
-> ```
+> **Indexing checkpoint:** record the source filenames, splitter settings, embedding node, vector store, and the number of chunks reported by the upsert/index action. If that count is zero, stop: query testing cannot succeed until documents have actually been indexed.
 
 ### 4. Prompt and Testing
 
@@ -139,15 +138,9 @@ Test questions should check normal retrieval, module connections, insufficient c
 
 For at least the first two questions, look behind the answer. Flowise's test panel can show the source documents or retrieved chunks for a response (often via a "source documents" toggle or an expandable section under the answer). Confirm that the retrieved chunks actually contain the facts the answer states. An answer that is correct but unsupported by its retrieved chunks is a lucky guess, not a working RAG system.
 
-> **Screenshot placeholder**
->
-> Insert a screenshot showing retrieved context or source chunks for one answered question.
->
-> Expected file:
->
-> ```text
-> ../../Assets/screenshots/flowise/M03C-03-retrieved-context.png
-> ```
+![Orientation guide to inspecting retrieved chunks and sources](../../Assets/screenshots/flowise/m03c-context.svg)
+
+> **Retrieval checkpoint:** judge the retrieved chunks before judging the prose answer. If the answer is wrong but the chunks are relevant, revise the response prompt. If the chunks are irrelevant, change the documents, splitter, embeddings, or `topK` instead.
 
 ### 5. Result Interpretation
 
@@ -168,7 +161,7 @@ flowchart TD
 
 If retrieval returns irrelevant chunks, the usual causes are chunks that are too small or too large (adjust chunk size and overlap, then re-upsert) or a query phrased very differently from the document wording (try rewriting the query, or improve the documents). If retrieval is good but the answer ignores it, tighten the prompt and lower the temperature. If the fallback fires too often, check that the upsert actually ran after your last settings change, and consider raising topK. Change one setting at a time and re-test — the ability to attribute a failure to the retrieval side or the generation side is precisely the diagnostic skill this session exists to teach.
 
-### 6. Student Work
+### 6. Student Tasks
 
 Complete the following tasks and gather the evidence listed for each.
 
@@ -187,13 +180,14 @@ Complete the following tasks and gather the evidence listed for each.
 </table>
 
 </div>
+### 7. Submission and Reflection
 
 To export, open the flow settings menu and choose **Export Chatflow**, saving the JSON as `M03C_RAG_YourName.json`. Check the exported file for two things before submitting: no API key values, and no private document text (the export can include loader configuration, so confirm that only your approved public sources are referenced).
 
 Submit: the workflow screenshot, the exported JSON, the public source list, the component settings table, the five query results, the two retrieval analyses, and a reflection explaining how M03C connects the vector-search concepts of M02C to the code-level RAG you will build in Python in M05A — the pipeline is identical; only the medium changes.
 
 
-### References and Further Reading
+#### Further Readings
 
 - Flowise official documentation: <https://docs.flowiseai.com/>
 - Flowise website and local install commands: <https://flowiseai.com/>
