@@ -217,6 +217,7 @@ Module 03 uses two kinds of model capability. Chat generation writes an answer t
 <tr><td align="left">M03C</td><td>Chat model API key and embedding capability.</td><td>RAG needs generated answers and vector representations.</td></tr>
 <tr><td align="left">M03D</td><td>Chat model API key.</td><td>The agent needs a model to decide whether a tool should be used.</td></tr>
 <tr><td align="left">M03E</td><td>No new key by default.</td><td>The focus is reviewing access, embed and API exposure.</td></tr>
+<tr><td align="left">M03F (optional)</td><td>No provider key for a local Ollama model.</td><td>Inference runs through a local Ollama endpoint; Ollama Cloud is outside this local-only path.</td></tr>
 </tbody>
 </table>
 
@@ -267,7 +268,7 @@ To summarise the safety rules for the whole module: keys live only in the creden
 
 ### 6. Component Map for Module 03
 
-The module increases complexity gradually, and each session builds on the previous one. M03A is about reading the canvas. M03B adds a controlled chatbot with a system instruction and optional memory. M03C adds retrieval over public documents. M03D adds action through a safe tool. M03E reviews whether a finished workflow is safe to expose through an embed widget or API.
+The module increases complexity gradually, and each core session builds on the previous one. M03A is about reading the canvas. M03B adds a controlled chatbot with a system instruction and optional memory. M03C adds retrieval over public documents. M03D adds action through a safe tool. M03E reviews whether a finished workflow is safe to expose through an embed widget or API. M03F is an optional branch after M03B for students who can run Ollama locally; it swaps the model provider without replacing the prompt, testing, or safety design.
 
 ```mermaid
 flowchart LR
@@ -275,6 +276,7 @@ flowchart LR
     B --> C["M03C<br/>RAG over public documents"]
     C --> D["M03D<br/>AgentFlow with a safe tool"]
     D --> E["M03E<br/>Embed, API, deployment readiness"]
+    B -.-> F["M03F optional<br/>Local models through Ollama"]
 ```
 
 <div align="center">
@@ -289,6 +291,7 @@ flowchart LR
 <tr><td align="left">M03C</td><td>Document loader, text splitter, embeddings, vector store, retriever, prompt, chat model.</td><td>Document source, chunk size, overlap, topK, embedding model, data boundary.</td></tr>
 <tr><td align="left">M03D</td><td>AgentFlow input, instruction, model/router, approved tool, output.</td><td>Allowed tool, schema, validation rules, refusal behaviour.</td></tr>
 <tr><td align="left">M03E</td><td>Embed widget, Prediction API, access control, logs/history, usage limits.</td><td>Public/private access, API protection, disclaimer, data and tool safety.</td></tr>
+<tr><td align="left">M03F (optional)</td><td>Ollama runtime, ChatOllama, optional Ollama Embeddings.</td><td>Base URL, local model name, resource use, data path and cloud/local comparison.</td></tr>
 </tbody>
 </table>
 

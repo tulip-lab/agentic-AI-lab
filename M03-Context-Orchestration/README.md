@@ -13,6 +13,8 @@ flowchart LR
     B --> C[M03C<br/>Retrieve public context]
     C --> D[M03D<br/>Use one safe tool]
     D --> E[M03E<br/>Review the deployment boundary]
+    B -. Optional local-model path .-> F[M03F<br/>Replace the cloud model with Ollama]
+    F -. Prepares for .-> M6[M06C<br/>Private-agent boundaries]
 ```
 
 | Session | Focus | Estimated time | Main evidence |
@@ -23,6 +25,7 @@ flowchart LR
 | [M03C — RAG over Public Documents](Flowise/M03C-Flowise-RAG-Public-Unit-Docs.md) | Indexing, retrieval, grounding, and data boundaries | 75–100 min | RAG flow, source checks, and retrieval analysis |
 | [M03D — AgentFlow and Safe Tools](Flowise/M03D-Flowise-AgentFlow-Safe-Tools.md) | Tool schema, validation, and refusal behaviour | 75–90 min | AgentFlow, tool trace, and boundary tests |
 | [M03E — Deployment Readiness](Flowise/M03E-Flowise-Embed-API-Deployment-Readiness.md) | Embed/API exposure, access, privacy, and cost | 60–75 min | Evidence-backed readiness decision |
+| [M03F — Local Models through Ollama](Flowise/M03F-Flowise-Ollama-Local-Models.md) *(optional)* | Local inference, runtime networking, provider comparison, and optional local RAG | 60–90 min plus download time | ChatOllama flow, failure diagnosis, and cloud-versus-local comparison |
 
 ## How to Study Each Session
 
@@ -44,6 +47,7 @@ Flowise evolves, so a button or node may move or be renamed. Preserve the concep
 | Conversation history | A memory input | Buffer Memory or a bounded chat-memory option |
 | Retrieval | A chain or Agentflow retriever that accepts a vector-store retriever | Conversational Retrieval QA Chain, Retriever, or an equivalent template |
 | Controlled action | An Agentflow agent/tool path | Start → Agent with approved tool → End |
+| Local model | A chat model served by Ollama | ChatOllama connected to a reachable local endpoint |
 
 If compatible handles will not connect, do not force them. Remove the last connection, verify that the two nodes belong to the same builder family, and use the in-app template or current official documentation for your installed version.
 
@@ -56,3 +60,5 @@ If compatible handles will not connect, do not force them. Remove the last conne
 - If a key is exposed, revoke it and create a replacement. Blurring the screenshot does not undo exposure.
 
 Start with [M03X — Flowise Environment Setup](Flowise/M03X-Flowise-Environment-Setup.md).
+
+After M03B, students with suitable local hardware may take the optional [M03F Ollama path](Flowise/M03F-Flowise-Ollama-Local-Models.md). It is an extension, not a prerequisite for M03C–M03E.

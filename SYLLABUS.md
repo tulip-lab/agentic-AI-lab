@@ -59,7 +59,7 @@ The default path is sequential: complete the preliminary modules before the core
 
 - Complete M01 before any API-backed or tool-using lab; its secret-handling and validation patterns apply throughout the unit.
 - Complete M02 before M03C or M05A–M05B; those sessions assume you can distinguish retrieval quality from answer quality.
-- Complete M03X before the remaining M03 sessions. M03A–M03D form a progression from visible information flow to memory, retrieval and safe tool use; M03E reviews one completed workflow at the deployment boundary.
+- Complete M03X before the remaining M03 sessions. M03A–M03D form a progression from visible information flow to memory, retrieval and safe tool use; M03E reviews one completed workflow at the deployment boundary. M03F is an optional local-model branch after M03B and prepares students for the privacy-boundary analysis in M06C.
 - Complete M04A before M04B–M04D. M04B introduces tool routing, M04C adds state-changing actions, and M04D combines retrieval with controlled writing.
 - Complete M05C before M06A; explicit workflow state makes multi-agent hand-offs and failure branches easier to reason about.
 - Treat M07 and M08 as advanced labs. They assume you can inspect evidence, define a safety boundary and test normal, edge or missing-information, and failure or refusal behaviour.
@@ -93,6 +93,7 @@ Optional API, model or package sections are extensions, not prerequisites for co
 |  | M03C | RAG over Public Unit Documents | `M03-Context-Orchestration/Flowise/M03C-Flowise-RAG-Public-Unit-Docs.md` |
 |  | M03D | AgentFlow with Safe Tools | `M03-Context-Orchestration/Flowise/M03D-Flowise-AgentFlow-Safe-Tools.md` |
 |  | M03E | Embedding, API and Deployment Readiness | `M03-Context-Orchestration/Flowise/M03E-Flowise-Embed-API-Deployment-Readiness.md` |
+|  | M03F | Flowise with Local Models through Ollama (Optional) | `M03-Context-Orchestration/Flowise/M03F-Flowise-Ollama-Local-Models.md` |
 | M04: LangChain Programming | M04A | LangChain Fundamentals | `M04-Agent-Programming/Jupyter/M04A-LangChain-Fundamentals.ipynb` |
 |  | M04B | LangChain Tool-Using Agents | `M04-Agent-Programming/Jupyter/M04B-LangChain-ToolAgents.ipynb` |
 |  | M04C | Custom Tools, Local Storage and Action Execution | `M04-Agent-Programming/Jupyter/M04C-CustomTools-Storage-Actions.ipynb` |
@@ -121,7 +122,7 @@ Optional API, model or package sections are extensions, not prerequisites for co
 The expanded schedule covers the following applied themes:
 
 - Agentic AI foundations, LLMs, APIs and function calling.
-- Flowise setup, visual workflow construction, chatbot workflows, RAG and AgentFlow.
+- Flowise setup, visual workflow construction, chatbot workflows, RAG, AgentFlow and an optional Ollama local-model path.
 - Tool integration, custom tools, local storage and action execution.
 - RAG over public course documents and public datasets.
 - Hosting, web embedding and UI integration.

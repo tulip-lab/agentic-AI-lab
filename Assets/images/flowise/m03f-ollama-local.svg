@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1540" height="440" viewBox="0 0 1540 440">
+  <rect width="100%" height="100%" fill="#fafafa"/>
+  <text x="40" y="55" font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="#222">Local-model path: keep the workflow, replace the provider</text>
+
+  <rect x="50" y="150" width="210" height="100" rx="16" fill="#eef6ff" stroke="#315b7d" stroke-width="3"/>
+  <text x="80" y="193" font-family="Arial, sans-serif" font-size="20" fill="#222">User message</text>
+  <text x="80" y="221" font-family="Arial, sans-serif" font-size="16" fill="#555">stays on this device</text>
+
+  <line x1="260" y1="200" x2="335" y2="200" stroke="#333" stroke-width="4"/>
+  <polygon points="335,200 317,189 317,211" fill="#333"/>
+
+  <rect x="340" y="150" width="230" height="100" rx="16" fill="#f2f2f2" stroke="#333" stroke-width="3"/>
+  <text x="383" y="193" font-family="Arial, sans-serif" font-size="20" fill="#222">Local Flowise</text>
+  <text x="383" y="221" font-family="Arial, sans-serif" font-size="16" fill="#555">Chatflow or Agentflow</text>
+
+  <line x1="570" y1="200" x2="645" y2="200" stroke="#333" stroke-width="4"/>
+  <polygon points="645,200 627,189 627,211" fill="#333"/>
+
+  <rect x="650" y="150" width="230" height="100" rx="16" fill="#f4f0ff" stroke="#5d4a8a" stroke-width="3"/>
+  <text x="704" y="193" font-family="Arial, sans-serif" font-size="20" fill="#222">ChatOllama</text>
+  <text x="704" y="221" font-family="Arial, sans-serif" font-size="16" fill="#555">local endpoint</text>
+
+  <line x1="880" y1="200" x2="955" y2="200" stroke="#333" stroke-width="4"/>
+  <polygon points="955,200 937,189 937,211" fill="#333"/>
+
+  <rect x="960" y="150" width="230" height="100" rx="16" fill="#eef8ef" stroke="#3d6b43" stroke-width="3"/>
+  <text x="1017" y="193" font-family="Arial, sans-serif" font-size="20" fill="#222">Ollama server</text>
+  <text x="1017" y="221" font-family="Arial, sans-serif" font-size="16" fill="#555">127.0.0.1:11434</text>
+
+  <line x1="1190" y1="200" x2="1265" y2="200" stroke="#333" stroke-width="4"/>
+  <polygon points="1265,200 1247,189 1247,211" fill="#333"/>
+
+  <rect x="1270" y="150" width="220" height="100" rx="16" fill="#fff7e8" stroke="#8a6427" stroke-width="3"/>
+  <text x="1323" y="193" font-family="Arial, sans-serif" font-size="20" fill="#222">Local model</text>
+  <text x="1323" y="221" font-family="Arial, sans-serif" font-size="16" fill="#555">CPU / GPU / memory</text>
+
+  <rect x="50" y="315" width="1440" height="70" rx="14" fill="#fff" stroke="#777" stroke-width="2" stroke-dasharray="8 6"/>
+  <text x="80" y="347" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#333">Boundary check</text>
+  <text x="250" y="347" font-family="Arial, sans-serif" font-size="18" fill="#333">Local endpoint + locally installed model ≠ permission to use private course or student data.</text>
+  <text x="250" y="373" font-family="Arial, sans-serif" font-size="16" fill="#555">Flowise logs, operating-system access, model licences, and accidental network exposure still need review.</text>
+</svg>
