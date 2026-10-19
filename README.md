@@ -6,7 +6,9 @@
 
 ![FLIP Banner](Assets/images/flip-banner.png)
 
-# FLIP: Agentic AI in Practice
+# FLIP: Foundations and Engineering of Agentic AI
+
+Former course title: **FLIP: Agentic AI in Practice**. The shared M01–M08 core supports undergraduate, educator, and researcher offerings.
 
 **FLIP** stands for **Fundamentals of Learning and Intelligent Processing**.
 
@@ -27,7 +29,7 @@ Prepared by :tulip: **[TULIP Lab](https://www.tulip.academy), Australia**
 
 ## Unit Materials
 
-This repository contains the public practical materials for **FLIP: Agentic AI in Practice**.
+This repository contains the public practical materials for **FLIP: Foundations and Engineering of Agentic AI**.
 
 The detailed schedule, learning outcomes, practical structure, assessment guidance and responsible-use requirements are available in [SYLLABUS.md](SYLLABUS.md).
 

@@ -6,7 +6,7 @@
 
 ![FLIP Banner](Assets/images/flip-banner.png)
 
-# FLIP: Agentic AI in Practice
+# FLIP: Foundations and Engineering of Agentic AI
 
 **FLIP** stands for **Fundamentals of Learning and Intelligent Processing**.
 
