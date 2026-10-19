@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "manifest_type": "lab_manifest",
+  "lab_id": "LAB-COURSE-RAG-01",
+  "version": "0.3.0",
+  "modules": [
+    "M03",
+    "M05",
+    "M08"
+  ],
+  "outcomes": [
+    "C02",
+    "C03",
+    "C04",
+    "C06"
+  ],
+  "case": {
+    "repository_role": "student_public",
+    "path": "Data/case-packs/data-privacy-ai-security/v3/case-manifest.json"
+  },
+  "variants": [
+    {
+      "level": "L1",
+      "method": "document",
+      "entrypoint": "L1/guide.md",
+      "duration_minutes": 20
+    },
+    {
+      "level": "L2",
+      "method": "python",
+      "entrypoint": "L2/guide.md",
+      "duration_minutes": 60
+    },
+    {
+      "level": "L3",
+      "method": "python",
+      "entrypoint": "L3/guide.md",
+      "duration_minutes": 150
+    }
+  ],
+  "runner": "run_demo.py",
+  "tests": "test_demo.py",
+  "data_classification": "public_synthetic"
+}

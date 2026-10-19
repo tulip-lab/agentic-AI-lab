@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "manifest_type": "case_manifest",
+  "case_id": "CASE-PRIVACY-SECURITY-01",
+  "version": "3.0.0",
+  "licence": "CC BY 4.0",
+  "provenance": "TULIP Lab 原创合成教学案例 v3，聚焦隐私泄露、数据泄密与差分隐私；无个人数据。",
+  "files": [
+    {
+      "path": "README.md",
+      "sha256": "9d65232eaf92dfe18eaa5f9e0e3a4b0c39ee9f50d83458cd7c0161f809d478d1"
+    },
+    {
+      "path": "corpus.json",
+      "sha256": "3acf3eb87c23ffe27dde274185c53b8711ca7f008f34edca6f8b5c60a7d35d7d"
+    },
+    {
+      "path": "task.json",
+      "sha256": "a12a9ca0604e0046dfd7615540b0c1971e3952f89d10f9052850e3fd3bf93a05"
+    },
+    {
+      "path": "boundary-scenarios.json",
+      "sha256": "e90db4bfe00731442424b3ca111d5223d6656278e3c882ae88d223cd1a7a52dd"
+    }
+  ]
+}

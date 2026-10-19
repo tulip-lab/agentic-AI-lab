@@ -1,0 +1,172 @@
+{
+  "nodes": [
+    {
+      "id": "startAgentflow_0",
+      "type": "agentFlow",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "data": {
+        "id": "startAgentflow_0",
+        "label": "Start",
+        "name": "startAgentflow",
+        "type": "Start",
+        "category": "Agent Flows",
+        "baseClasses": [
+          "Start"
+        ],
+        "inputs": {
+          "startInputType": "chatInput",
+          "startState": ""
+        },
+        "outputs": {},
+        "inputParams": [
+          {
+            "name": "startInputType",
+            "type": "options"
+          }
+        ],
+        "inputAnchors": [],
+        "outputAnchors": [
+          {
+            "id": "startAgentflow_0-output-startAgentflow",
+            "name": "startAgentflow"
+          }
+        ]
+      }
+    },
+    {
+      "id": "humanInputAgentflow_0",
+      "type": "agentFlow",
+      "position": {
+        "x": 250,
+        "y": 0
+      },
+      "data": {
+        "id": "humanInputAgentflow_0",
+        "label": "Human Input",
+        "name": "humanInputAgentflow",
+        "type": "HumanInput",
+        "category": "Agent Flows",
+        "baseClasses": [
+          "HumanInput"
+        ],
+        "inputs": {
+          "humanInputDescriptionType": "fixed",
+          "humanInputDescription": "审核候选",
+          "humanInputEnableFeedback": true
+        },
+        "outputs": {},
+        "inputParams": [
+          {
+            "name": "humanInputDescriptionType",
+            "type": "options"
+          },
+          {
+            "name": "humanInputDescription",
+            "type": "string"
+          },
+          {
+            "name": "humanInputEnableFeedback",
+            "type": "boolean"
+          }
+        ],
+        "inputAnchors": [],
+        "outputAnchors": [
+          {
+            "id": "humanInputAgentflow_0-output-0",
+            "name": "proceed"
+          },
+          {
+            "id": "humanInputAgentflow_0-output-1",
+            "name": "reject"
+          }
+        ]
+      }
+    },
+    {
+      "id": "directReplyAgentflow_0",
+      "type": "agentFlow",
+      "position": {
+        "x": 500,
+        "y": 0
+      },
+      "data": {
+        "id": "directReplyAgentflow_0",
+        "label": "Direct Reply",
+        "name": "directReplyAgentflow",
+        "type": "DirectReply",
+        "category": "Agent Flows",
+        "baseClasses": [
+          "DirectReply"
+        ],
+        "inputs": {
+          "directReplyMessage": "审核结果"
+        },
+        "outputs": {},
+        "inputParams": [
+          {
+            "name": "directReplyMessage",
+            "type": "string"
+          }
+        ],
+        "inputAnchors": [],
+        "outputAnchors": []
+      }
+    },
+    {
+      "id": "directReplyAgentflow_1",
+      "type": "agentFlow",
+      "position": {
+        "x": 500,
+        "y": 180
+      },
+      "data": {
+        "id": "directReplyAgentflow_1",
+        "label": "Direct Reply",
+        "name": "directReplyAgentflow",
+        "type": "DirectReply",
+        "category": "Agent Flows",
+        "baseClasses": [
+          "DirectReply"
+        ],
+        "inputs": {
+          "directReplyMessage": "审核结果"
+        },
+        "outputs": {},
+        "inputParams": [
+          {
+            "name": "directReplyMessage",
+            "type": "string"
+          }
+        ],
+        "inputAnchors": [],
+        "outputAnchors": []
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "start-to-human",
+      "source": "startAgentflow_0",
+      "target": "humanInputAgentflow_0",
+      "sourceHandle": "startAgentflow_0-output-startAgentflow",
+      "targetHandle": "humanInputAgentflow_0"
+    },
+    {
+      "id": "human-to-accept",
+      "source": "humanInputAgentflow_0",
+      "target": "directReplyAgentflow_0",
+      "sourceHandle": "humanInputAgentflow_0-output-0",
+      "targetHandle": "directReplyAgentflow_0"
+    },
+    {
+      "id": "human-to-reject",
+      "source": "humanInputAgentflow_0",
+      "target": "directReplyAgentflow_1",
+      "sourceHandle": "humanInputAgentflow_0-output-1",
+      "targetHandle": "directReplyAgentflow_1"
+    }
+  ]
+}

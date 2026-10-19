@@ -134,3 +134,9 @@ Thanks goes to these wonderful people :tulip:
 </a>
 
 Made with [contributors-img](https://contrib.rocks).
+
+## Teaching and Research Application
+
+[课程资料到教学资源：中文 L1–L3 实践](M05-Knowledge-Agents/Applications/course-rag/README.md) connects source selection, learning outcomes, activities, slides and human review. Use the offline teaching baseline or import a separately generated model candidate into the same checks.
+
+[Data Privacy：隐私泄露、数据泄密与差分隐私 L1–L3 实践](M06-Multi-Agent-Safety/Applications/data-privacy/README.md) uses synthetic records to compare inference, unauthorized export, and budgeted statistical release.

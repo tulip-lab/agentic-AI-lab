@@ -1,0 +1,12 @@
+{
+  "synthetic": true,
+  "scenario": "虚构课程的固定三人学习小组；成员名单仅用于演示重叠查询。风险标志是虚构的二元教学变量。",
+  "records": [
+    {"id": "SYN-01", "cohort": "A", "risk_flag": 1},
+    {"id": "SYN-02", "cohort": "A", "risk_flag": 0},
+    {"id": "SYN-03", "cohort": "A", "risk_flag": 1},
+    {"id": "SYN-04", "cohort": "B", "risk_flag": 0},
+    {"id": "SYN-05", "cohort": "B", "risk_flag": 1},
+    {"id": "SYN-06", "cohort": "B", "risk_flag": 0}
+  ]
+}

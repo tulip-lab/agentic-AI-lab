@@ -1,0 +1,13 @@
+{
+  "task_id": "BTBU-S03-COURSE-01",
+  "audience": "商科教师",
+  "topic": "数据隐私：隐私泄露、数据泄密与差分隐私",
+  "source_ids": [
+    "DP-MIN",
+    "DP-LEAK",
+    "DP-BREACH",
+    "DP-DP"
+  ],
+  "activity": "审核一份虚构课程学习分析与统计发布方案",
+  "language": "zh-CN"
+}

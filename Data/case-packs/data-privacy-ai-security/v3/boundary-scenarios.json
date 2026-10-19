@@ -1,0 +1,49 @@
+{
+  "description": "手工标注的教学边界，不是自动语义冲突检测基准。",
+  "scenarios": [
+    {
+      "id": "normal",
+      "source_ids": [
+        "DP-MIN",
+        "DP-LEAK",
+        "DP-BREACH",
+        "DP-DP"
+      ],
+      "expected": "continue",
+      "why": "四类教学证据存在且无已标注冲突；仍需教师核对概念适用性。"
+    },
+    {
+      "id": "missing",
+      "source_ids": [
+        "MISSING"
+      ],
+      "expected": "stop",
+      "why": "不能用模型常识补写缺失的课程依据。"
+    },
+    {
+      "id": "conflict",
+      "source_ids": [
+        "RETENTION-A",
+        "RETENTION-B"
+      ],
+      "expected": "stop",
+      "why": "同一保存期存在明确标注的矛盾，交由教师核查版本与适用范围。"
+    },
+    {
+      "id": "injection",
+      "source_ids": [
+        "UNTRUSTED-BOARD"
+      ],
+      "expected": "stop",
+      "why": "资料不能要求外发或发布。"
+    },
+    {
+      "id": "unmarked-conflict",
+      "source_ids": [
+        "RETENTION-A"
+      ],
+      "expected": "continue",
+      "why": "单独选择一个片段不能证明它真实或适用；程序只检测已标注且同时选中的冲突。"
+    }
+  ]
+}
