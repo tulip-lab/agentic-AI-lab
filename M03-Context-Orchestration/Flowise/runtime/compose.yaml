@@ -1,0 +1,34 @@
+name: m03-flowise
+
+services:
+  flowise-init:
+    image: alpine:3.22
+    user: "0:0"
+    # Only prepare this lab volume. Flowise itself runs as the image's node user.
+    command: ["chown", "1000:1000", "/data"]
+    volumes:
+      - flowise_data:/data
+
+  flowise:
+    image: ${FLOWISE_IMAGE:?Run sh init-env.sh first}
+    restart: unless-stopped
+    depends_on:
+      flowise-init:
+        condition: service_completed_successfully
+    ports:
+      - "127.0.0.1:${FLOWISE_PORT:-3000}:3000"
+    env_file: .env
+    environment:
+      PORT: "3000"
+      APP_URL: http://localhost:${FLOWISE_PORT:-3000}
+    volumes:
+      - flowise_data:/home/node/.flowise
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://127.0.0.1:3000/api/v1/ping"]
+      interval: 15s
+      timeout: 5s
+      retries: 10
+      start_period: 60s
+
+volumes:
+  flowise_data:

@@ -1,0 +1,13 @@
+# Optional CPU stack; combine with compose.yaml. No host port for Ollama.
+# On Apple silicon, prefer native Ollama for GPU acceleration (see M03F).
+services:
+  ollama:
+    image: ollama/ollama:0.40.6
+    restart: unless-stopped
+    environment:
+      OLLAMA_NO_CLOUD: "1"
+    volumes:
+      - ollama_data:/root/.ollama
+
+volumes:
+  ollama_data:
