@@ -142,3 +142,9 @@ The strongest cross-module demonstration sequence is M02C (transparent RAG), M03
 Session tasks are formative unless an offering-specific brief states otherwise. Students should submit the evidence named in each lab: completed code or workflow, test results, relevant traces or screenshots, limitations and reflection. Offering-specific assessment packages are listed in [Assignments/README.md](Assignments/README.md); submission dates, weighting and LMS details are supplied separately for each teaching offering.
 
 All work must use approved public or synthetic material. Do not upload private files, student records, credentials, instructor-only content or unpublished assessment material to notebooks, model providers, Flowise, repositories or screenshots. A successful refusal, abstention or skipped optional section is valid evidence when it demonstrates the required boundary honestly.
+
+## Audience Pathways and Application
+
+Undergraduate study emphasises implementation and testing across M01–M08. Educators select teaching/research applications and begin with document-based L1 tasks, then optional L2 customisation. Researchers focus on evidence, workflows, reproducibility and comparisons, with implementation depth selected by prior experience. These routes select the same technical concepts rather than redefine module IDs.
+
+The [中文课程资源贯通实践](M05-Knowledge-Agents/Applications/course-rag/README.md) provides L1–L3 activities using the [public synthetic privacy/security case](Data/case-packs/data-privacy-ai-security/v3/README.md). It is formative; actual offering assessment remains separate.

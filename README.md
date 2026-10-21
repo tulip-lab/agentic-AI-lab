@@ -14,6 +14,8 @@ Former course title: **FLIP: Agentic AI in Practice**. The shared M01–M08 core
 
 This repository contains student-facing practical materials for building generative and agentic AI systems through Python notebooks, visual workflows, retrieval-augmented generation, multi-agent systems, model adaptation, evaluation and coding-agent practice.
 
+For the shared technical framework, module overviews, and offering information, see the [FLIP course hub](https://github.com/tulip-lab/agentic-AI/tree/develop).
+
 ---
 
 - Materials in this repository support practical learning in generative AI and agentic AI systems.

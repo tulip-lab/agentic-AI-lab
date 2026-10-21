@@ -15,5 +15,3 @@ These labs are the English, offering-independent M03 pathway. Begin with a worki
 M03C uses two downloadable files: the [sample outline](examples/public-course-outline.md) and the [monthly-report case](examples/public-salary-case.md). The default low-cost path is DeepSeek for generation and a small Ollama model for embeddings. A fully local chat comparison is optional. Each lab identifies its node settings, expected observations, normal and failure tests, and evidence to keep.
 
 The screenshots show Flowise 3.1.3 running on a local machine. A credential's display name is only a local label; use your own credential. Interface labels may move in other versions, so follow the named fields and verify the resulting execution trace. The [runtime templates](runtime/) belong in a private working directory once copied; never place a real .env file or API key in this repository.
-
-For an educator-specific application of these shared concepts, see the separate [Faculty F02 practice](../../Faculty/F02-AI-Engineering/practice.zh-CN.md).

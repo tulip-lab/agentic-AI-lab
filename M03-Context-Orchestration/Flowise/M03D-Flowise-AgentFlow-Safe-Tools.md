@@ -96,6 +96,4 @@ For each test keep the input, answer, **whether a tool was called**, and, if cal
 
 **Evidence to keep:** the clean exported <code>M03D-Safe-Tool-yourname.json</code>, the tool name/schema/function, six test records, and one expanded trace screenshot. Inspect exports for keys or private content. **Completion check:** you can distinguish model arithmetic from an actual tool invocation and explain how both the schema and the function constrain actions.
 
-As a separate extension, the [Faculty F02 practice](../../Faculty/F02-AI-Engineering/practice.zh-CN.md) demonstrates search, MCP, and multi-agent review. Those components are not needed to pass this shared-core single-tool lab.
-
 References: [Flowise Agentflow V2](https://docs.flowiseai.com/using-flowise/agentflowv2) · [DeepSeek tool calls](https://api-docs.deepseek.com/guides/tool_calls) · [Ollama tool calling](https://docs.ollama.com/capabilities/tool-calling)

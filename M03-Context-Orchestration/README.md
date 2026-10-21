@@ -4,28 +4,33 @@
 
 This is the start page for the Flowise labs in Module 03. The module is designed for independent study: each session states what you need, what to build, how to test it, what evidence to keep, and how to recover when the interface differs from the guide.
 
+The supported runtime is **local Flowise in Docker**, with **Apple container** as an alternative on supported Apple silicon Macs. Use **DeepSeek official API** or **local Ollama** for chat. M03C uses a separate **Ollama embedding model**; no Gemini or OpenAI account is required. Start with the detailed [installation guide](Flowise/M03X-Flowise-Environment-Setup.md) and its [copyable runtime files](Flowise/runtime/).
+
+For an Ollama route from the start, read **M03F Sections 2–3 during M03X**, then return to M03A. M03F's later comparison activity remains optional. On low-memory hardware, use DeepSeek for chat and run only the small local embedding model, or an instructor-provided embedding endpoint.
+
 ## Learning Path
 
 ```mermaid
 flowchart LR
-    X[M03X<br/>Choose and secure a runtime] --> A[M03A<br/>Read a visual workflow]
+    X[M03X<br/>Docker or Apple container] --> A[M03A<br/>Read a visual workflow]
     A --> B[M03B<br/>Control prompt and memory]
     B --> C[M03C<br/>Retrieve public context]
     C --> D[M03D<br/>Use one safe tool]
     D --> E[M03E<br/>Review the deployment boundary]
-    B -. Optional local-model path .-> F[M03F<br/>Replace the cloud model with Ollama]
+    X -. Local setup reference .-> F[M03F<br/>Ollama setup and comparison]
+    B -. Optional comparison .-> F
     F -. Prepares for .-> M6[M06C<br/>Private-agent boundaries]
 ```
 
 | Session | Focus | Estimated time | Main evidence |
 |---|---|---:|---|
-| [M03X — Environment Setup](Flowise/M03X-Flowise-Environment-Setup.md) | Runtime, accounts, credentials, and secret safety | 45–75 min | Runtime choice and safe setup check |
+| [M03X — Environment Setup](Flowise/M03X-Flowise-Environment-Setup.md) | Docker/Apple installation, persistence, DeepSeek/Ollama and credentials | 60–90 min plus downloads | Runtime choice and safe setup check |
 | [M03A — Interface and First Chatflow](Flowise/M03A-Flowise-Interface-First-Chatflow.md) | Nodes, edges, settings, and information flow | 45–60 min | Saved flow, tests, and flow explanation |
 | [M03B — Prompt and Memory](Flowise/M03B-Flowise-Chatbot-Prompt-Memory.md) | Scope control, uncertainty, and optional memory | 60–75 min | Controlled prompt and comparison tests |
 | [M03C — RAG over Public Documents](Flowise/M03C-Flowise-RAG-Public-Unit-Docs.md) | Indexing, retrieval, grounding, and data boundaries | 75–100 min | RAG flow, source checks, and retrieval analysis |
 | [M03D — AgentFlow and Safe Tools](Flowise/M03D-Flowise-AgentFlow-Safe-Tools.md) | Tool schema, validation, and refusal behaviour | 75–90 min | AgentFlow, tool trace, and boundary tests |
 | [M03E — Deployment Readiness](Flowise/M03E-Flowise-Embed-API-Deployment-Readiness.md) | Embed/API exposure, access, privacy, and cost | 60–75 min | Evidence-backed readiness decision |
-| [M03F — Local Models through Ollama](Flowise/M03F-Flowise-Ollama-Local-Models.md) *(optional)* | Local inference, runtime networking, provider comparison, and optional local RAG | 60–90 min plus download time | ChatOllama flow, failure diagnosis, and cloud-versus-local comparison |
+| [M03F — Local Models through Ollama](Flowise/M03F-Flowise-Ollama-Local-Models.md) *(setup reference; comparison optional)* | Native/container Ollama, host networking, model comparison and local RAG | 60–90 min plus download time | ChatOllama flow, failure diagnosis, and provider/model comparison |
 
 ## How to Study Each Session
 
@@ -42,8 +47,8 @@ Flowise evolves, so a button or node may move or be renamed. Preserve the concep
 
 | You need | Search for this concept | Common current form |
 |---|---|---|
-| A basic chatbot | A chain that accepts a chat model | Conversation Chain or another simple chat chain |
-| Model access | A chat model integration | ChatGoogleGenerativeAI or an instructor-approved equivalent |
+| A basic chatbot | A chain that accepts a chat model | Chat Prompt Template → LLM Chain for the stateless baseline; Conversation Chain plus Memory for the extension |
+| Model access | A chat model integration | Deepseek, OpenAI Custom Model for its compatible API, or ChatOllama |
 | Conversation history | A memory input | Buffer Memory or a bounded chat-memory option |
 | Retrieval | A chain or Agentflow retriever that accepts a vector-store retriever | Conversational Retrieval QA Chain, Retriever, or an equivalent template |
 | Controlled action | An Agentflow agent/tool path | Start → Agent with approved tool → End |
@@ -61,4 +66,4 @@ If compatible handles will not connect, do not force them. Remove the last conne
 
 Start with [M03X — Flowise Environment Setup](Flowise/M03X-Flowise-Environment-Setup.md).
 
-After M03B, students with suitable local hardware may take the optional [M03F Ollama path](Flowise/M03F-Flowise-Ollama-Local-Models.md). It is an extension, not a prerequisite for M03C–M03E.
+Use [M03F Sections 2–3](Flowise/M03F-Flowise-Ollama-Local-Models.md) whenever local chat or embeddings need setup. After M03B, optionally complete its model comparison. For M03D, verify actual structured tool calls before relying on a model for agent decisions.

@@ -12,7 +12,7 @@
    ```
 
    使用 L3 的检索结果时，同时指定该次运行保存的任务：`--plan <L3 输出>/plan.json --task <L3 输出>/task.json`，并使用新输出文件。程序会核对案例哈希、来源和逐字引文，再把候选摘要哈希与所选来源写入人工审核提示。
-3. 在本地 Flowise 3.1.4 的 Agentflows 界面导入 JSON。Flowise 需按课程的 M03 环境指南启动，绑定本机并使用独立账户；不要在公开仓库保存账户、API key 或运行记录。
+3. 在本地 `flowiseai/flowise:3.1.3` 镜像的 Agentflows 界面导入 JSON。Flowise 需按课程的 M03 环境指南启动，绑定本机并使用独立账户；不要在公开仓库保存账户、API key 或运行记录。
 4. 在界面用合成问题启动，确认 Human Input 暂停；分别在新会话中选择 Reject 和 Proceed，检查两条 Direct Reply 分支。也可用下面的脚本对已导入的 flow ID 作端到端核验：
 
    ```sh
