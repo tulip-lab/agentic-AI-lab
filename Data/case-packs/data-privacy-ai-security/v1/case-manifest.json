@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "manifest_type": "case_manifest",
+  "case_id": "CASE-PRIVACY-SECURITY-01",
+  "version": "1.0.0",
+  "licence": "CC BY 4.0",
+  "provenance": "TULIP Lab 原创合成教学案例，2026-10-19；无外部复制文本，无个人数据。",
+  "files": [
+    {
+      "path": "README.md",
+      "sha256": "f77c4637f7d8f26f6a0b94c87e031ea5464ff4180030017c22e6ebf47606ea68"
+    },
+    {
+      "path": "corpus.json",
+      "sha256": "dcab318f23a965110a254df9b57e58c681db7e97d7e447b84c87fa77ea339d38"
+    },
+    {
+      "path": "task.json",
+      "sha256": "2e5c360851ed95c5fe36e87713e45892b45993f6a48ef87839a26072bbcfbb14"
+    }
+  ]
+}

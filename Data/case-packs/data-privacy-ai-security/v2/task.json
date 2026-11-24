@@ -1,0 +1,12 @@
+{
+  "task_id": "BTBU-S03-COURSE-01",
+  "audience": "商科教师",
+  "topic": "学习数据隐私与课程资源设计",
+  "source_ids": [
+    "DP-MIN",
+    "DP-CONSENT",
+    "SEC-INJECT"
+  ],
+  "activity": "审核课程学习数据使用方案",
+  "language": "zh-CN"
+}

@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "manifest_type": "case_manifest",
+  "case_id": "CASE-PRIVACY-SECURITY-01",
+  "version": "2.0.0",
+  "licence": "CC BY 4.0",
+  "provenance": "TULIP Lab 原创合成教学案例 v2，增加已标注来源冲突与边界场景；无个人数据。",
+  "files": [
+    {
+      "path": "README.md",
+      "sha256": "48daa4cdddd1cb6f080f77f917fbc02f702f17fbbdcaea89e0255c736a016cb3"
+    },
+    {
+      "path": "corpus.json",
+      "sha256": "dc6892257d7ca4efbb42af976ff5ec91b79984090353bee33bad8880bbc5f2fa"
+    },
+    {
+      "path": "task.json",
+      "sha256": "2e5c360851ed95c5fe36e87713e45892b45993f6a48ef87839a26072bbcfbb14"
+    },
+    {
+      "path": "boundary-scenarios.json",
+      "sha256": "d427194285c2b73f6fe261221cf019a31817e74d688082eeb6d95c3264fa9f7e"
+    }
+  ]
+}
